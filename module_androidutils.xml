@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_androidutils" default="compile.module.androidutils">
+  <dirname property="module.androidutils.basedir" file="${ant.file.module_androidutils}"/>
+  
+  <property name="module.jdk.home.androidutils" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.androidutils" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.androidutils" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.androidutils" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="androidutils.output.dir" value="${module.androidutils.basedir}/build/classes/production/AndroidUtils"/>
+  <property name="androidutils.testoutput.dir" value="${module.androidutils.basedir}/build/classes/test/AndroidUtils"/>
+  
+  <path id="androidutils.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androidutils.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidutils}"/>
+  </path>
+  
+  <path id="androidutils.runtime.production.module.classpath">
+    <pathelement location="${androidutils.output.dir}"/>
+  </path>
+  
+  <path id="androidutils.module.classpath">
+    <path refid="${module.jdk.classpath.androidutils}"/>
+    <pathelement location="${androidutils.output.dir}"/>
+  </path>
+  
+  <path id="androidutils.runtime.module.classpath">
+    <pathelement location="${androidutils.testoutput.dir}"/>
+    <pathelement location="${androidutils.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androidutils">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androidutils">
+    <patternset refid="excluded.from.module.androidutils"/>
+  </patternset>
+  
+  
+  <target name="compile.module.androidutils" depends="compile.module.androidutils.production,compile.module.androidutils.tests" description="Compile module AndroidUtils"/>
+  
+  <target name="compile.module.androidutils.production" depends="register.custom.compilers" description="Compile module AndroidUtils; production classes"/>
+  
+  <target name="compile.module.androidutils.tests" depends="register.custom.compilers,compile.module.androidutils.production" description="compile module AndroidUtils; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.androidutils" description="cleanup module">
+    <delete dir="${androidutils.output.dir}"/>
+    <delete dir="${androidutils.testoutput.dir}"/>
+  </target>
+</project>

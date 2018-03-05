@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <com.sendtion.xrichtext.RichTextEditor
+        android:id="@+id/et_new_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/default_text_size_3"
+        android:textColor="@color/color_gray"/>
+
+
+
+    <TextView
+        android:id="@+id/insert_image"
+        style="@style/default_button"
+        android:text="插入图片"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/color_white"
+        />
+</RelativeLayout>

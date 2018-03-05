@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_interface_noParam_noResult"
+        style="@style/default_button"
+        android:text="测试接口_无参无返回值"
+        android:textColor="@color/color_white"
+        />
+    <TextView
+        android:id="@+id/tv_interface_withParamOnly"
+        style="@style/default_button"
+        android:text="测试接口_只有参数"
+        android:textColor="@color/color_white"
+        android:layout_marginTop="@dimen/default_margin_3"
+        />
+
+    <TextView
+        android:id="@+id/tv_interface_withResultOnly"
+        style="@style/default_button"
+        android:text="测试接口_只有返回值"
+        android:textColor="@color/color_white"
+        android:layout_marginTop="@dimen/default_margin_3"
+        />
+
+    <TextView
+        android:id="@+id/tv_interface_withParamAndResult"
+        style="@style/default_button"
+        android:text="测试接口_有参有返回值"
+        android:textColor="@color/color_white"
+        android:layout_marginTop="@dimen/default_margin_3"
+        />
+
+</LinearLayout>
