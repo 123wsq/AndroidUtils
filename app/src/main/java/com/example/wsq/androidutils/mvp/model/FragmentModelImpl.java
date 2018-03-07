@@ -28,6 +28,10 @@ public class FragmentModelImpl implements FragmentModel{
         map2.put(DefaultAdapter.KEY_DATA, "index");
         list.add(map2);
 
+        Map<String, Object> map3  = new HashMap<>();
+        map3.put(DefaultAdapter.KEY_DATA, "城市");
+        list.add(map3);
+
         loadListener.onComplete(list);
     }
 }

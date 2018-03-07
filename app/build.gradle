@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.0.2'
     //防止65536 分包
     compile 'com.android.support:multidex:1.0.1'
+    implementation files('libs/umeng-analytics-7.4.4.jar')
+    implementation files('libs/umeng-common-1.4.4.jar')
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->

@@ -61,6 +61,7 @@ public class IndexFragment extends BaseFragment<FragmentView, FragmentPresenter<
     @Override
     protected void initView() {
 
+        Logger.d("索引");
         index_View.onTextChangeListener(new IndexView.OnTextChangeListener() {
             @Override
             public void onChangeTextListener(String result) {

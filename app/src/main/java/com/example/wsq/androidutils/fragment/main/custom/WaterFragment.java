@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
+import com.orhanobut.logger.Logger;
+import com.wsq.library.utils.DateUtil;
 import com.wsq.library.utils.ImageUtils;
 
 import butterknife.BindView;
@@ -44,21 +46,58 @@ public class WaterFragment extends BaseFragment{
     @Override
     protected void initView() {
 
+        Logger.d("添加水印");
 
     }
 
-    @OnClick({R.id.tv_center_water})
+    @OnClick({R.id.tv_center_water, R.id.tv_left_top_water, R.id.tv_right_top_water, R.id.tv_left_down_water, R.id.tv_right_down_water})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_center_water:
                 try{
                     Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);
-                    Bitmap bitmap = ImageUtils.drawTextToCenter(getActivity(), olebitmap, "2018-01-31", 30, Color.WHITE);
+                    Bitmap bitmap = ImageUtils.drawTextToCenter(getActivity(), olebitmap, DateUtil.onDateFormat(DateUtil.DATA_FORMAT_1), 30, Color.WHITE);
                     iv_water.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
 
+                break;
+            case R.id.tv_left_top_water:
+                try{
+                    Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);
+                    Bitmap bitmap = ImageUtils.drawTextToLeftTop(getActivity(), olebitmap, DateUtil.onDateFormat(DateUtil.DATA_FORMAT_1), 30, Color.WHITE, 20, 20);
+                    iv_water.setImageBitmap(bitmap);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.tv_right_top_water:
+                try{
+                    Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);
+                    Bitmap bitmap = ImageUtils.drawTextToRightTop(getActivity(), olebitmap, DateUtil.onDateFormat(DateUtil.DATA_FORMAT_1), 30, Color.WHITE, 20, 20);
+                    iv_water.setImageBitmap(bitmap);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.tv_left_down_water:
+                try{
+                    Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);
+                    Bitmap bitmap = ImageUtils.drawTextToLeftBottom(getActivity(), olebitmap, DateUtil.onDateFormat(DateUtil.DATA_FORMAT_1), 30, Color.WHITE, 20, 20);
+                    iv_water.setImageBitmap(bitmap);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.tv_right_down_water:
+                try{
+                    Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);
+                    Bitmap bitmap = ImageUtils.drawTextToRightBottom(getActivity(), olebitmap, DateUtil.onDateFormat(DateUtil.DATA_FORMAT_1), 30, Color.WHITE, 20, 20);
+                    iv_water.setImageBitmap(bitmap);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
         }
     }

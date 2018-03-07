@@ -148,7 +148,6 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
 
     }
 
-
     private class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {

@@ -4,6 +4,8 @@ package com.example.wsq.androidutils.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.wsq.androidutils.R;
@@ -12,13 +14,14 @@ import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.bean.UserBean;
 import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
+import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
 import com.example.wsq.androidutils.mvp.presenter.IPresenter;
 import com.example.wsq.androidutils.mvp.view.IView;
 
-import com.orhanobut.logger.Logger;
+import com.umeng.analytics.MobclickAgent;
 import com.wsq.library.struct.FunctionNoParamNoResult;
 import com.wsq.library.struct.FunctionWithParamAndResult;
 import com.wsq.library.struct.FunctionWithParamOnly;
@@ -34,6 +37,8 @@ import java.util.Map;
 public class MainActivity extends BaseActivity<IView, IPresenter<IView>> implements IView{
 
     private Fragment curFragment;
+    private FragmentManager fragmentManager;
+    private List<Fragment> mListFragment;
 
     @Override
     protected IPresenter<IView> createPresenter() {
@@ -47,8 +52,10 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
 
 
     public void initView() {
-
+        mListFragment = new ArrayList<>();
+        fragmentManager = getSupportFragmentManager();
         ipresenter.fetch();
+        MobclickAgent.onProfileSignIn("wsq");
     }
 
 
@@ -75,27 +82,31 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
      * @param isBack  是否支持返回
      */
     public void onEnter( Fragment fragment, String tag, boolean isBack){
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fTransaction = fragmentManager.beginTransaction();
-            if (!fragment.isAdded()){
-                Logger.d(tag+"   不存在");
-//                if(curFragment!=null)fTransaction.hide(curFragment);
-                fTransaction.add( R.id.layout_content, fragment, tag);
-                if(isBack) fTransaction.addToBackStack(tag);
-//                fTransaction.show(fragment).commit();
-            }
-//            else {
-                if(curFragment != null)fTransaction.hide(curFragment);
-                fTransaction.show(fragment).commit();
+        List<Fragment> fragments = fragmentManager.getFragments();
 
-//                List<Fragment> fragments = fragmentManager.getFragments();
-//                for (int i = 0; i < fragments.size(); i++) {
-//                    fTransaction.hide(fragments.get(i));
+//        if (fragments != null){
+//            for (int i = 0; i < fragments.size(); i++) {
+////                fTransaction.hide(fragments.get(i));
+//
+//                Log.d("状态", ""+fragments.get(i).getClass().getName()+"================="+fragments.get(i).isVisible()+"");
+//                if (fragments.get(i).isVisible()){
+////                    curFragment = fragments.get(i);
+////                    Log.e("当前显示", fragments.get(i).getClass().getName());
 //                }
-//                fTransaction.show(fragment).commit();
 //            }
-            curFragment = fragment;
+//        }
+        if (curFragment != null) fTransaction.hide(curFragment);
+
+        if (!fragment.isAdded()) {
+            mListFragment.add(fragment);
+            fTransaction.add(R.id.layout_content, fragment, tag);
+            if (isBack)fTransaction.addToBackStack(tag);
+            fTransaction.show(fragment).commit();
+        } else {
+            fTransaction.show(fragment).commit();
+        }
+        curFragment = fragment;
     }
 
 
@@ -119,6 +130,9 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
                         break;
                     case 2:
                         onEnter(new IndexFragment(), IndexFragment.TAG, true);
+                        break;
+                    case 3:
+                        onEnter(new CityFragment(), CityFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");
@@ -165,5 +179,20 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                fragmentManager.popBackStack();
+                if (mListFragment.size() > 1) {
+                    mListFragment.remove(mListFragment.size() - 1);
+                    curFragment = mListFragment.get(mListFragment.size()-1);
+                }else{
+                    finish();
+                }
+                break;
+        }
+        return true;
+    }
 }
