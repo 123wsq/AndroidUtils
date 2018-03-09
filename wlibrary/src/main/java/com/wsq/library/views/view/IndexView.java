@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -13,107 +15,138 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.wlibrary.R;
 import com.orhanobut.logger.Logger;
+import com.wsq.library.utils.DensityUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/2/9 0009.
  */
 
 public class IndexView extends LinearLayout {
-    private String[] index={"#","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+    public static String[] INDEX_STRING = {"定位", "历史","热门","A", "B", "C", "D", "E", "F", "G", "H", "I",
+            "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+            "W", "X", "Y", "Z"};
 
+    private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
+    private List<String> letterList;
+    private int choose = -1;
+    private Paint paint = new Paint();
+    private TextView mTextDialog;
     private Context mContext;
-    private OnTextChangeListener mListener;
-    private int  curPosition = -1 ;
-    private int height;
-    private int width;
+
     public IndexView(Context context) {
-        super(context);
+        this(context, null);
 
     }
 
-    @SuppressLint("NewApi")
-    public IndexView(Context context, AttributeSet attrs){
-        super(context, attrs);
+    public IndexView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public IndexView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
         this.mContext = context;
-        setOrientation(LinearLayout.VERTICAL);
-        onAddView();
-
+        init();
     }
 
+    private void init() {
+        setBackgroundColor(Color.parseColor("#F0F0F0"));
+        letterList = Arrays.asList(INDEX_STRING);
+    }
 
-    public void onAddView(){
-
-        for (int i = 0; i < index.length; i++) {
-            final TextView textView = new TextView(mContext);
-            textView.setGravity(Gravity.CENTER);
-            textView.setText(index[i]);
-            textView.setOnClickListener(new MyOnClickListener(i));
-            addView(textView);
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int height = getHeight();// 获取对应高度
+        int width = getWidth();// 获取对应宽度
+        int singleHeight = height / letterList.size();// 获取每一个字母的高度
+        for (int i = 0; i < letterList.size(); i++) {
+            paint.setColor(Color.parseColor("#606060"));
+            paint.setTypeface(Typeface.DEFAULT_BOLD);
+            paint.setAntiAlias(true);
+            paint.setTextSize(DensityUtil.sp2px(mContext, 13));
+            // 选中的状态
+            if (i == choose) {
+                paint.setColor(Color.parseColor("#4F41FD"));
+                paint.setFakeBoldText(true);
+            }
+            // x坐标等于中间-字符串宽度的一半.
+            float xPos = width / 2 - paint.measureText(letterList.get(i)) / 2;
+            float yPos = singleHeight * i + singleHeight / 2;
+            canvas.drawText(letterList.get(i), xPos, yPos, paint);
+            paint.reset();// 重置画笔
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-
-        return super.onTouchEvent(event);
-    }
-
-
-    @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
-
-        return true;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        width = getWidth();
-        height = getHeight();
-        float downPoint;
-        int spaceSize = height/ index.length+1;
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                downPoint = event.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                int curPoint = (int) event.getY();
+        final int action = event.getAction();
+        final float y = event.getY();// 点击y坐标
+        final int oldChoose = choose;
+        final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
+        final int c = (int) (y / getHeight() * letterList.size());// 点击y坐标所占总高度的比例*b数组的长度就等于点击b中的个数.
 
-                int poi = curPoint % spaceSize == 0 ? (curPoint / spaceSize) : curPoint/spaceSize + 1;
-
-                if (mListener != null){
-                    mListener.onChangeTextListener(index[poi >= index.length-1 ? index.length -1 : poi]);
+        switch (action) {
+            case MotionEvent.ACTION_UP:
+                setBackgroundColor(Color.parseColor("#F0F0F0"));
+                choose = -1;
+                invalidate();
+                if (mTextDialog != null) {
+                    mTextDialog.setVisibility(View.GONE);
                 }
                 break;
-            case MotionEvent.ACTION_UP:
-
+            default:
+//                setBackgroundResource(R.drawable.sidebar_background);
+                if (oldChoose != c) {
+                    if (c >= 0 && c < letterList.size()) {
+                        if (listener != null) {
+                            listener.onTouchingLetterChanged(letterList.get(c));
+                        }
+                        if (mTextDialog != null) {
+                            mTextDialog.setText(letterList.get(c));
+                            mTextDialog.setVisibility(View.VISIBLE);
+                        }
+                        choose = c;
+                        invalidate();
+                    }
+                }
                 break;
         }
-        return super.dispatchTouchEvent(event);
+        return true;
     }
 
-    class MyOnClickListener implements OnClickListener{
-        int position;
-
-
-        public MyOnClickListener(int position){
-            this.position = position;
-        }
-        @Override
-        public void onClick(View view) {
-            if (mListener != null){
-                mListener.onChangeTextListener(index[position]);
-            }
-        }
+    public void setIndexText(ArrayList<String> indexStrings) {
+        this.letterList = indexStrings;
+        invalidate();
     }
 
-    public void onTextChangeListener(OnTextChangeListener listener){
-        this.mListener = listener;
+    /**
+     * 为SideBar设置显示当前按下的字母的TextView
+     *
+     * @param mTextDialog
+     */
+    public void setTextView(TextView mTextDialog) {
+        this.mTextDialog = mTextDialog;
     }
 
+    /**
+     * 向外公开的方法
+     *
+     * @param onTouchingLetterChangedListener
+     */
+    public void setOnTouchingLetterChangedListener(
+            OnTouchingLetterChangedListener onTouchingLetterChangedListener) {
+        this.onTouchingLetterChangedListener = onTouchingLetterChangedListener;
+    }
 
-    public interface OnTextChangeListener{
-        void onChangeTextListener(String result);
+    /**
+     * 接口
+     */
+    public interface OnTouchingLetterChangedListener {
+        void onTouchingLetterChanged(String s);
     }
 }

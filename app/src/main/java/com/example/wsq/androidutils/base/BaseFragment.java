@@ -9,13 +9,14 @@ import android.view.ViewGroup;
 
 import com.example.wsq.androidutils.activity.MainActivity;
 import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
-import com.orhanobut.logger.Logger;
+import com.example.wsq.androidutils.mvp.view.BaseView;
 import com.wsq.library.struct.FunctionsManage;
+import com.wsq.library.views.view.LoadingDialog;
 
 
 import butterknife.ButterKnife;
 
-public abstract class BaseFragment<V, T extends BasePresenter<V >> extends Fragment {
+public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implements BaseView {
 
 
     public String _INTERFACE_NPNR = "_NPNR";  //没参数没有返回值
@@ -26,12 +27,13 @@ public abstract class BaseFragment<V, T extends BasePresenter<V >> extends Fragm
 
     public FunctionsManage mFunctionsManage;
     protected T ipresenter;
+    private LoadingDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view  = inflater.inflate(getLayoutId(), container, false);
-
+        dialog = new LoadingDialog(getContext());
         ipresenter = createPresenter();
         if (ipresenter != null) {
             ipresenter.attachView((V) this);
@@ -76,6 +78,22 @@ public abstract class BaseFragment<V, T extends BasePresenter<V >> extends Fragm
         }
     }
 
+    @Override
+    public void showLoadding() {
+
+        if (!dialog.isShowing()) dialog.show();
+    }
+
+    @Override
+    public void dismissLoadding() {
+
+        if (dialog.isShowing())dialog.dismiss();
+    }
+
+    @Override
+    public void loadFail(String errorMsg) {
+
+    }
 
     @Override
     public void onDestroy() {

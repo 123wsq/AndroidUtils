@@ -23,10 +23,10 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.ViewHole
 
     public static final String KEY_DATA = "data";
     private Context mContext;
-    private List<Map<String, Object>> mData;
+    private List<String> mData;
     private OnRecyclerViewItemClickListener mListener;
 
-    public DefaultAdapter(Context context, List<Map<String, Object>> list, OnRecyclerViewItemClickListener listener){
+    public DefaultAdapter(Context context, List<String> list, OnRecyclerViewItemClickListener listener){
         this.mContext = context;
         this.mData = list;
         this.mListener = listener;
@@ -41,7 +41,7 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.ViewHole
     @Override
     public void onBindViewHolder(ViewHoler holder, int position) {
 
-        holder.tv_content.setText(mData.get(position).get(KEY_DATA)+"");
+        holder.tv_content.setText(mData.get(position));
     }
 
     @Override

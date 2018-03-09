@@ -6,86 +6,160 @@ package com.wsq.library.bean;
 
 public class CityInfoBean {
 
-    int Id;
+    /**
+     * 省份名称
+     */
+    String province_name;
 
     /**
-     * 与上一级关联
+     * 省份拼音
      */
-    int parent_id;
-
+    String province_spell;
 
     /**
-     * 名称
+     * 省份简拼
      */
-    String name;
+    String province_logogram;
 
     /**
-     * 与下一级关联
+     * 省份ID
      */
-    String  priority;
+    int province_id;
 
     /**
-     * 拼音
+     * 城市名称
      */
-    String spell;
+    String city_name;
 
     /**
-     * 简拼
+     * 城市拼音
      */
-    String logogram;
+    String city_spell;
 
-    public int getId() {
-        return Id;
+    /**
+     * 城市简拼
+     */
+    String  city_logogram;
+
+    /**
+     * 城市ID
+     */
+    int city_id;
+
+    /**
+     * 县，区名称
+     */
+    String county_name;
+
+    /**
+     * 县 区 拼音
+     */
+    String county_spell;
+
+    /**
+     * 县 区简拼
+     */
+    String county_logogram;
+
+    /**
+     * 搜索匹配  1 表示按照城市匹配  2表示按照 县区
+     */
+    int searchMatch;
+
+
+    public String getProvince_name() {
+        return province_name;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setProvince_name(String province_name) {
+        this.province_name = province_name;
     }
 
-    public int getParent_id() {
-        return parent_id;
+    public String getProvince_spell() {
+        return province_spell;
     }
 
-    public void setParent_id(int parent_id) {
-        this.parent_id = parent_id;
+    public void setProvince_spell(String province_spell) {
+        this.province_spell = province_spell;
     }
 
-    public String getName() {
-        return name;
+    public String getProvince_logogram() {
+        return province_logogram;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProvince_logogram(String province_logogram) {
+        this.province_logogram = province_logogram;
     }
 
-    public String getPriority() {
-        return priority;
+    public int getProvince_id() {
+        return province_id;
     }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setProvince_id(int province_id) {
+        this.province_id = province_id;
     }
 
-    public String getSpell() {
-        return spell;
+    public String getCity_name() {
+        return city_name;
     }
 
-    public void setSpell(String spell) {
-        this.spell = spell;
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
     }
 
-    public String getLogogram() {
-        return logogram;
+    public String getCity_spell() {
+        return city_spell;
     }
 
-    public void setLogogram(String logogram) {
-        this.logogram = logogram;
+    public void setCity_spell(String city_spell) {
+        this.city_spell = city_spell;
     }
 
+    public String getCity_logogram() {
+        return city_logogram;
+    }
 
-    @Override
-    public String toString() {
-        return "CityInfoBean: [ Id="+Id+", parent_id= "+parent_id+", name="+name+"," +
-                " priority="+priority+", spell="+spell+", logogram="+logogram+"]";
+    public void setCity_logogram(String city_logogram) {
+        this.city_logogram = city_logogram;
+    }
+
+    public int getCity_id() {
+        return city_id;
+    }
+
+    public void setCity_id(int city_id) {
+        this.city_id = city_id;
+    }
+
+    public String getCounty_name() {
+        return county_name;
+    }
+
+    public void setCounty_name(String county_name) {
+        this.county_name = county_name;
+    }
+
+    public String getCounty_spell() {
+        return county_spell;
+    }
+
+    public void setCounty_spell(String county_spell) {
+        this.county_spell = county_spell;
+    }
+
+    public String getCounty_logogram() {
+        return county_logogram;
+    }
+
+    public void setCounty_logogram(String county_logogram) {
+        this.county_logogram = county_logogram;
+    }
+
+    public int getSearchMatch() {
+        return searchMatch;
+    }
+
+    public void setSearchMatch(int searchMatch) {
+        this.searchMatch = searchMatch;
     }
 }

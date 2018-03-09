@@ -6,11 +6,14 @@
 
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
     <com.wsq.library.views.view.IndexView
         android:id="@+id/index_View"
-        android:layout_width="50dp"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
 

@@ -1,12 +1,9 @@
 package com.example.wsq.androidutils.mvp.presenter;
 
-
-import com.orhanobut.logger.Logger;
-
 import java.lang.ref.WeakReference;
 
 /**
- * Created by wsq on 2018/1/17.
+ * Created by Administrator on 2018/3/9 0009.
  */
 
 public class BasePresenter<T> {
@@ -24,5 +21,7 @@ public class BasePresenter<T> {
         weakReference.clear();
 
     }
-
+    protected T getView(){
+        return weakReference.get();
+    }
 }

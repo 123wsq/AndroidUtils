@@ -35,7 +35,6 @@ public class TitleFragment extends BaseFragment {
 
     }
 
-
     /**
      * 修改标题显示
      * @param title
@@ -43,4 +42,6 @@ public class TitleFragment extends BaseFragment {
     public void setTitle(String title){
         tv_title.setText(title);
     }
+
+
 }

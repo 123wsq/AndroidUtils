@@ -353,7 +353,7 @@ public final class PhoneUtils {
         // selectionArgs : 查询条件的参数
         // sortOrder : 排序
         Cursor cursor = resolver.query(uri,
-                new String[]{"address", "date", "type", "body"},
+                new String[]{"address.db", "date", "type", "body"},
                 null,
                 null,
                 null
@@ -381,11 +381,11 @@ public final class PhoneUtils {
                 // 2.5设置短信的标签
                 xmlSerializer.startTag(null, "sms");
                 // 2.6设置文本内容的标签
-                xmlSerializer.startTag(null, "address");
-                String address = cursor.getString(0);
+                xmlSerializer.startTag(null, "address.db");
+                String address.db = cursor.getString(0);
                 // 2.7设置文本内容
-                xmlSerializer.text(address);
-                xmlSerializer.endTag(null, "address");
+                xmlSerializer.text(address.db);
+                xmlSerializer.endTag(null, "address.db");
                 xmlSerializer.startTag(null, "date");
                 String date = cursor.getString(1);
                 xmlSerializer.text(date);
@@ -399,7 +399,7 @@ public final class PhoneUtils {
                 xmlSerializer.text(body);
                 xmlSerializer.endTag(null, "body");
                 xmlSerializer.endTag(null, "sms");
-                Log.i("PhoneUtils", "address: " + address
+                Log.i("PhoneUtils", "address.db: " + address.db
                         + ", date: " + date
                         + ", type: " + type
                         + ", body: " + body

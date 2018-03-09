@@ -148,7 +148,7 @@ public final class DeviceUtils {
         if (result.result == 0) {
             String name = result.successMsg;
             if (name != null) {
-                result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address", false);
+                result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address.db", false);
                 if (result.result == 0) {
                     if (result.successMsg != null) {
                         return result.successMsg;

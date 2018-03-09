@@ -4,9 +4,7 @@ package com.example.wsq.androidutils.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseActivity;
@@ -15,12 +13,14 @@ import com.example.wsq.androidutils.bean.UserBean;
 import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
+import com.example.wsq.androidutils.fragment.main.custom.CitySearchFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
-import com.example.wsq.androidutils.mvp.presenter.IPresenter;
-import com.example.wsq.androidutils.mvp.view.IView;
 
+import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
+import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
+import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.umeng.analytics.MobclickAgent;
 import com.wsq.library.struct.FunctionNoParamNoResult;
 import com.wsq.library.struct.FunctionWithParamAndResult;
@@ -30,19 +30,18 @@ import com.wsq.library.struct.FunctionsManage;
 import com.wsq.library.tools.ToastUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends BaseActivity<IView, IPresenter<IView>> implements IView{
+public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
 
     private Fragment curFragment;
     private FragmentManager fragmentManager;
     private List<Fragment> mListFragment;
 
     @Override
-    protected IPresenter<IView> createPresenter() {
-        return new IPresenter<>();
+    protected DefaultPresenter<DefaultView> createPresenter() {
+        return new DefaultPresenter<>();
     }
 
     @Override
@@ -54,26 +53,15 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
     public void initView() {
         mListFragment = new ArrayList<>();
         fragmentManager = getSupportFragmentManager();
-        ipresenter.fetch();
         MobclickAgent.onProfileSignIn("wsq");
-    }
-
-
-    @Override
-    public void showLoadding() {
-        ToastUtils.onToast("加载数据");
+        ipresenter.showData();
     }
 
     @Override
-    public void dimissLodding() {
-        ToastUtils.onToast("加载完成");
-    }
-
-    @Override
-    public void showData(List<Map<String, Object>> data) {
+    public void showData(List<String> data) {
         onEnter(new MainFragment(), MainFragment.TAG, false);
-
     }
+
 
     /**
      *
@@ -85,17 +73,7 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
         FragmentTransaction fTransaction = fragmentManager.beginTransaction();
         List<Fragment> fragments = fragmentManager.getFragments();
 
-//        if (fragments != null){
-//            for (int i = 0; i < fragments.size(); i++) {
-////                fTransaction.hide(fragments.get(i));
-//
-//                Log.d("状态", ""+fragments.get(i).getClass().getName()+"================="+fragments.get(i).isVisible()+"");
-//                if (fragments.get(i).isVisible()){
-////                    curFragment = fragments.get(i);
-////                    Log.e("当前显示", fragments.get(i).getClass().getName());
-//                }
-//            }
-//        }
+
         if (curFragment != null) fTransaction.hide(curFragment);
 
         if (!fragment.isAdded()) {
@@ -138,6 +116,14 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
                         ToastUtils.onToast("努力完善中...");
                         break;
                 }
+            }
+        });
+
+        functionsManage.addFunction(new FunctionNoParamNoResult(CityFragment.INTERFACE_NPNR) {
+            @Override
+            public void function() {
+
+                onEnter(new CitySearchFragment(), CitySearchFragment.TAG, true);
             }
         });
 
@@ -195,4 +181,6 @@ public class MainActivity extends BaseActivity<IView, IPresenter<IView>> impleme
         }
         return true;
     }
+
+
 }

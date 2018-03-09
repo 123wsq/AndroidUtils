@@ -60,4 +60,5 @@ public class TabFragment extends BaseFragment{
                 break;
         }
     }
+
 }

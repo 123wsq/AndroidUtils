@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
-import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
-import com.example.wsq.androidutils.mvp.presenter.FragmentPresenter;
-import com.example.wsq.androidutils.mvp.view.FragmentView;
-import com.orhanobut.logger.Logger;
+import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
+import com.example.wsq.androidutils.mvp.presenter.CityPresenter;
+import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
+import com.example.wsq.androidutils.mvp.view.BaseView;
+import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.wsq.library.listener.OnRecyclerViewItemClickListener;
 import com.wsq.library.tools.RecyclerViewDivider;
 import com.wsq.library.tools.ToastUtils;
@@ -28,7 +29,7 @@ import butterknife.BindView;
  * Created by wsq on 2018/1/20.
  */
 
-public class OneTabFragment extends BaseFragment<FragmentView, FragmentPresenter<FragmentView>> implements FragmentView {
+public class OneTabFragment extends BaseFragment<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
 
     public static final String INTERFACE_NPNR = OneTabFragment.class.getName()+"NPNR";
     public static final String INTERFACE_WITHP = OneTabFragment.class.getName()+"withParam";
@@ -43,13 +44,13 @@ public class OneTabFragment extends BaseFragment<FragmentView, FragmentPresenter
     RecyclerView rv_RecyclerView;
 
     private DefaultAdapter mAdater;
-    private List<Map<String, Object>> mData;
-    private LoadingDialog dialog;
+    private List<String> mData;
+
 
 
     @Override
-    protected FragmentPresenter<FragmentView> createPresenter() {
-        return new FragmentPresenter<>();
+    protected DefaultPresenter<DefaultView> createPresenter() {
+        return new DefaultPresenter<DefaultView>();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class OneTabFragment extends BaseFragment<FragmentView, FragmentPresenter
     @Override
     public void initView() {
         mData = new ArrayList<>();
-        dialog = new LoadingDialog(getContext());
+
         rv_RecyclerView.addItemDecoration(new RecyclerViewDivider(
                 getActivity(), LinearLayoutManager.HORIZONTAL, DensityUtil.dp2px(getActivity(), 10),
                 ContextCompat.getColor(getActivity(), R.color.default_backgroud_color)));
@@ -70,32 +71,9 @@ public class OneTabFragment extends BaseFragment<FragmentView, FragmentPresenter
         mAdater = new DefaultAdapter(getActivity(), mData, mListener);
         rv_RecyclerView.setAdapter(mAdater);
 
-        ipresenter.fetch();
+        ipresenter.showData();
 
     }
-
-
-    @Override
-    public void onShowProgress() {
-
-        if (dialog != null && !dialog.isShowing())
-        dialog.show();
-    }
-
-    @Override
-    public void onHideProgress() {
-
-        if (dialog != null && dialog.isShowing())
-        dialog.dismiss();
-    }
-
-    @Override
-    public void showData(List<Map<String, Object>> data) {
-        mData.addAll(data);
-        mAdater.notifyDataSetChanged();
-    }
-
-
     OnRecyclerViewItemClickListener mListener = new OnRecyclerViewItemClickListener() {
         @Override
         public void onRecyclerItemClickListener(View view, int position) {
@@ -110,4 +88,11 @@ public class OneTabFragment extends BaseFragment<FragmentView, FragmentPresenter
         }
     };
 
+
+
+    @Override
+    public void showData(List<String> data) {
+        mData.addAll(data);
+        mAdater.notifyDataSetChanged();
+    }
 }
