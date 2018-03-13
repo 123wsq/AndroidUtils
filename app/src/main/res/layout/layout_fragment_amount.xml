@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/layout_public_titlebar"></include>
+
+    <TextView
+        android:id="@+id/tv_f2y"
+        style="@style/default_button"
+        android:text="F2Y      例：0.12345"
+         />
+    <TextView
+        android:id="@+id/tv_2p"
+        style="@style/default_button"
+        android:text="保留小数      例：12.345"
+        />
+</LinearLayout>

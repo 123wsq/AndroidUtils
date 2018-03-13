@@ -48,4 +48,123 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
         }
     }
 
+    /**
+     * Fragment2 显示数据
+     */
+    public void showTwoData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showTwoData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * Fragment3 显示数据
+     */
+    public void showthreeData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showThreeData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * Dialog数据
+     */
+    public void showDialogData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showDialogData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 多媒体显示数据
+     */
+    public void showMediaData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showMediaData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
 }

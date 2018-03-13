@@ -48,7 +48,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     TextView tv_title;
     @BindView(R.id.ll_back) LinearLayout ll_back;
 
-    private String[] titles = new String[]{"功能", "评价", "商家"};
+    private String[] titles = new String[]{"功能", "view", "测试"};
     private Fragment[] fragments = new Fragment[3];
 
     private MyAdapter adapter;
@@ -67,6 +67,7 @@ public class MainFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     public void initView() {
 
+        ll_back.setVisibility(View.GONE);
         fragments[0] = new OneTabFragment();
         fragments[1] = new TwoTabFragment();
         fragments[2] = new ThreeTabFragment();

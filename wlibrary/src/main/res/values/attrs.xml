@@ -49,4 +49,9 @@
         <attr name="isOpened" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="Custom_Edit">
+            <attr name="minLength" format="integer"/>
+            <attr name="maxLength" format="integer"/>
+    </declare-styleable>
+
 </resources>

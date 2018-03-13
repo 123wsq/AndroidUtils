@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -44,6 +45,10 @@ public class CustomDefaultDialog extends Dialog {
         private boolean isInput = false;   //是否显示输入框
         private String inputHint;
         private String mTitleColor = "#000000";
+        private String mMsgColor = mTitleColor;
+        private String mBtnColor = "#555555";
+        private String mHintColor = "#A9A9A9";
+        private String mHintMsg;
         private boolean isCloseDiaglog = false;    //是否显示右上角关闭按钮
         private boolean isShowMessage = true;  //表示是否显示消息内容
         private int requestCode = -1;
@@ -87,6 +92,24 @@ public class CustomDefaultDialog extends Dialog {
             return this;
         }
 
+        public Builder setMessageColor(String msgColor) {
+            this.mMsgColor = msgColor;
+            return this;
+        }
+        public Builder setBtnColor(String btnColor) {
+            this.mBtnColor = btnColor;
+            return this;
+        }
+
+        public Builder setInputHintColor(String hintColor){
+            this.mHintColor = hintColor;
+            return this;
+        }
+
+        public Builder setHintMsg(String hintMsg){
+            this.mHintMsg = hintMsg;
+            return this;
+        }
         public Builder setRequestCode(int code) {
             this.requestCode = code;
             return this;
@@ -202,22 +225,34 @@ public class CustomDefaultDialog extends Dialog {
             if (okListener!=null && cancelListener!= null){
                 dialog_cancel.setVisibility(View.VISIBLE);
                 dialog_ok.setVisibility(View.VISIBLE);
-                dialog_ok.setVisibility(View.VISIBLE);
+                dialig_view.setVisibility(View.VISIBLE);
             }
             // 2 当两个按钮都存在  并且需要返回值的情况
             if (okListenerInput !=null && cancelListener!= null){
 
                 dialog_cancel.setVisibility(View.VISIBLE);
                 dialog_ok.setVisibility(View.VISIBLE);
-                dialog_ok.setVisibility(View.VISIBLE);
+                dialig_view.setVisibility(View.VISIBLE);
             }
 
+            /**
+             * 设置字体颜色
+             *
+             */
+            tv_title.setTextColor(Color.parseColor(mTitleColor));
+            dialog_message.setTextColor(Color.parseColor(mMsgColor));
+            tv_inputMessage.setTextColor(Color.parseColor(mMsgColor));
+            tv_inputMessage.setHintTextColor(Color.parseColor(mHintColor));
+            dialog_ok.setTextColor(Color.parseColor(mBtnColor));
+            dialog_cancel.setTextColor(Color.parseColor(mBtnColor));
+
+            tv_inputMessage.setHint(TextUtils.isEmpty(mHintMsg) ? "请输入" : mHintMsg);
             /**
              * 只需要一个按钮的情况
              * 1 只需要确定按钮
              */
 
-             if (okListener != null || okListenerInput != null &&  cancelListener == null) {
+             if ((okListener != null || okListenerInput != null) &&  cancelListener == null) {
                 dialog_ok.setBackgroundResource(R.drawable.shape_dialog_buttom);
                 dialog_ok.setVisibility(View.VISIBLE);
                 dialog_cancel.setVisibility(View.GONE);
@@ -237,7 +272,7 @@ public class CustomDefaultDialog extends Dialog {
             float widthPixels = context.getResources().getDisplayMetrics().widthPixels;
             WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
             // p.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
-            p.width = (int) (widthPixels * 0.8); // 宽度设置为屏幕的0.65
+            p.width = (int) (widthPixels * 0.75); // 宽度设置为屏幕的0.65
             dialogWindow.setAttributes(p);
             dialog.setContentView(layout);
 

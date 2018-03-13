@@ -17,11 +17,15 @@
     </style>
 
     <style name="default_button" parent="default_text">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/default_height_3</item>
         <item name="android:background">@drawable/shape_button</item>
         <item name="android:layout_marginLeft">@dimen/default_margin_1</item>
         <item name="android:layout_marginRight">@dimen/default_margin_1</item>
-
+        <item name="android:layout_marginTop">@dimen/default_margin_1</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/default_text_size_1</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="common_line_horizontal_style">

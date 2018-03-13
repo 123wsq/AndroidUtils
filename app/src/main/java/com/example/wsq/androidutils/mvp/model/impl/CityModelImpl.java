@@ -23,7 +23,6 @@ public class CityModelImpl implements CityModelinter{
     public void loadAllCity(Context context, Callback<List<CityInfoBean>> callback) {
         CityDao cityDao = new CityDao(context);
         List<CityInfoBean> list = cityDao.getAllCity();
-        Integer.parseInt("1.1");
         callback.onSuccess(list);
         callback.onComplete();
     }

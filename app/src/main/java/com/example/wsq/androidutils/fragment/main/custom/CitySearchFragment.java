@@ -5,7 +5,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.adapter.SearchCityAdapter;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/3/8 0008.
@@ -29,13 +32,15 @@ import butterknife.BindView;
 
 public class CitySearchFragment extends BaseFragment<CityView, CityPresenter<CityView>> implements  CityView, TextWatcher {
     public static final String TAG = CitySearchFragment.class.getName();
-    public static final String INTERFACE_NPNR = TAG+"NPNR";
-    public static final String INTERFACE_WITHP = TAG+"withParam";
-    public static final String INTERFACE_WITHR = TAG+"withResult";
-    public static final String INTERFACE_WITHPR = TAG+"withParamResult";
+    public static final String INTERFACE_NPNR = TAG + _INTERFACE_NPNR;
+    public static final String INTERFACE_WITHP = TAG + _INTERFACE_WITHP;
+    public static final String INTERFACE_WITHR = TAG + _INTERFACE_WITHR;
+    public static final String INTERFACE_WITHPR = TAG + _INTERFACE_WITHPR;
 
     @BindView(R.id.rv_RecyclerView) RecyclerView rv_RecyclerView;
     @BindView(R.id.et_city_search) EditText et_city_search;
+    @BindView(R.id.tv_title) TextView tv_title;
+
 
     private List<CityInfoBean> mData;
     private SearchCityAdapter mAdapter;
@@ -52,6 +57,7 @@ public class CitySearchFragment extends BaseFragment<CityView, CityPresenter<Cit
 
     @Override
     protected void initView() {
+        tv_title.setText("城市搜索");
         mData = new ArrayList<>();
 
         rv_RecyclerView.addItemDecoration(new RecyclerViewDivider(
@@ -63,6 +69,15 @@ public class CitySearchFragment extends BaseFragment<CityView, CityPresenter<Cit
         mAdapter = new SearchCityAdapter(getActivity(), mData);
         rv_RecyclerView.setAdapter(mAdapter);
         et_city_search.addTextChangedListener(this);
+    }
+
+    @OnClick({R.id.ll_back})
+    public void OnClick(View view){
+        switch (view.getId()){
+            case R.id.ll_back:
+                mFunctionsManage.invokeFunction(INTERFACE_BACK);
+                break;
+        }
     }
 
     @Override

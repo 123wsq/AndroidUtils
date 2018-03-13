@@ -11,4 +11,12 @@ import java.util.List;
 public interface DefaultModelInter {
 
     void showData(Callback<List<String>> callback);
+
+    void showTwoData(Callback<List<String>> callback);
+
+    void showThreeData(Callback<List<String>> callback);
+
+    void showDialogData(Callback<List<String>> callback);
+
+    void showMediaData(Callback<List<String>> callback);
 }

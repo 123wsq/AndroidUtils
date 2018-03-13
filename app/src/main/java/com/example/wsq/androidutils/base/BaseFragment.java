@@ -19,11 +19,12 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implements BaseView {
 
 
-    public String _INTERFACE_NPNR = "_NPNR";  //没参数没有返回值
-    public String _INTERFACE_WITHP = "_WITHP";  //只有参数
-    public String _INTERFACE_WITHR = "_WITHR";  //只有返回值
-    public String _INTERFACE_WITHPR = "_WITHPR";  //有参数有返回值
+    public static String _INTERFACE_NPNR = "_NPNR";  //没参数没有返回值
+    public static String _INTERFACE_WITHP = "_WITHP";  //只有参数
+    public static String _INTERFACE_WITHR = "_WITHR";  //只有返回值
+    public static String _INTERFACE_WITHPR = "_WITHPR";  //有参数有返回值
 
+    public static String INTERFACE_BACK = "com.example.wsq.androidutils.base.BaseFragment";
 
     public FunctionsManage mFunctionsManage;
     protected T ipresenter;

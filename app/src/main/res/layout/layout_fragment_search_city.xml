@@ -5,12 +5,14 @@
     android:orientation="vertical"
     >
 
+    <include layout="@layout/layout_public_titlebar"></include>
     <EditText
         android:id="@+id/et_city_search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_height_3"
         android:layout_marginLeft="@dimen/default_margin_3"
         android:layout_marginRight="@dimen/default_margin_3"
+        android:layout_marginTop="@dimen/default_margin_1"
         />
 
     <include layout="@layout/layout_recyclerview_base"></include>

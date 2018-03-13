@@ -15,14 +15,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_height_4">
+            android:layout_height="@dimen/default_height_3">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="提示"
                 android:textColor="@android:color/black"
@@ -69,9 +69,10 @@
             android:textSize="@dimen/default_text_size_3"
             android:layout_marginLeft="@dimen/default_margin_1"
             android:layout_marginRight="@dimen/default_margin_1"
+            android:layout_marginTop="5dp"
             android:visibility="gone"
-            android:text=""
-            android:gravity="center"
+            android:text="11"
+            android:gravity="left"
             />
 
 
@@ -79,7 +80,7 @@
         <LinearLayout
             android:id="@+id/dialog_btn_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/default_height_3"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/default_margin_4"
             android:visibility="visible">
@@ -87,7 +88,7 @@
             <View
                 style="@style/common_line_horizontal_style"
                 android:layout_width="match_parent"
-                android:layout_height="0.1dp" />
+                android:layout_height="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,7 +108,7 @@
                 <View
                     android:id="@+id/dialig_view"
                     style="@style/common_line_horizontal_style"
-                    android:layout_width="0.1dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent" />
 
                 <Button

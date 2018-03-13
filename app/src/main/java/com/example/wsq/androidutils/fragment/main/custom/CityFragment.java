@@ -42,6 +42,7 @@ public class CityFragment extends BaseFragment<CityView, CityPresenter<CityView>
     @BindView(R.id.rv_RecyclerView) RecyclerView rv_RecyclerView;
     @BindView(R.id.index_View) IndexView index_View;
     @BindView(R.id.et_search) TextView et_search;
+    @BindView(R.id.tv_title) TextView tv_title;
 
     private CityAdapter mAdapter;
 
@@ -60,6 +61,7 @@ public class CityFragment extends BaseFragment<CityView, CityPresenter<CityView>
     @Override
     protected void initView() {
         mData = new ArrayList<>();
+        tv_title.setText("城市列表");
         rv_RecyclerView.addItemDecoration(new RecyclerViewDivider(
                 getActivity(), LinearLayoutManager.HORIZONTAL, DensityUtil.dp2px(getActivity(), 10),
                 ContextCompat.getColor(getActivity(), R.color.default_backgroud_color)));
@@ -77,9 +79,12 @@ public class CityFragment extends BaseFragment<CityView, CityPresenter<CityView>
         }
     }
 
-    @OnClick(R.id.et_search)
+    @OnClick({R.id.et_search, R.id.ll_back})
     public void OnClick(View view){
         switch (view.getId()){
+            case R.id.ll_back:
+                mFunctionsManage.invokeFunction(INTERFACE_BACK);
+                break;
             case R.id.et_search:
                 mFunctionsManage.invokeFunction(INTERFACE_NPNR);
                 break;

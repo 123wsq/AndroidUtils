@@ -33,6 +33,7 @@ public class WaterFragment extends BaseFragment{
     TextView tv_center_water;
     @BindView(R.id.iv_water)
     ImageView iv_water;
+    @BindView(R.id.tv_title) TextView tv_title;
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -46,13 +47,16 @@ public class WaterFragment extends BaseFragment{
     @Override
     protected void initView() {
 
-        Logger.d("添加水印");
+        tv_title.setText("图片水印");
 
     }
 
-    @OnClick({R.id.tv_center_water, R.id.tv_left_top_water, R.id.tv_right_top_water, R.id.tv_left_down_water, R.id.tv_right_down_water})
+    @OnClick({R.id.ll_back, R.id.tv_center_water, R.id.tv_left_top_water, R.id.tv_right_top_water, R.id.tv_left_down_water, R.id.tv_right_down_water})
     public void onClick(View view){
         switch (view.getId()){
+            case R.id.ll_back:
+                mFunctionsManage.invokeFunction(INTERFACE_BACK);
+                break;
             case R.id.tv_center_water:
                 try{
                     Bitmap olebitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_new_year);

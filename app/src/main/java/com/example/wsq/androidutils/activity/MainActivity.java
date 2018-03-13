@@ -12,13 +12,18 @@ import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.bean.UserBean;
 import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
+import com.example.wsq.androidutils.fragment.main.custom.AmountFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CitySearchFragment;
+import com.example.wsq.androidutils.fragment.main.custom.DialogFragment;
+import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
+import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
 
-import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
+import com.example.wsq.androidutils.fragment.main.tab.ThreeTabFragment;
+import com.example.wsq.androidutils.fragment.main.tab.TwoTabFragment;
 import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.umeng.analytics.MobclickAgent;
@@ -55,6 +60,8 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
         fragmentManager = getSupportFragmentManager();
         MobclickAgent.onProfileSignIn("wsq");
         ipresenter.showData();
+
+
     }
 
     @Override
@@ -118,6 +125,50 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                 }
             }
         });
+        functionsManage.addFunction(new FunctionWithParamOnly<Integer>(TwoTabFragment.INTERFACE_WITHP) {
+            @Override
+            public void function(Integer data) {
+                switch (data){
+                    case 0:
+                        onEnter(new MediaFragment(), MediaFragment.TAG, true);
+                        break;
+                    default:
+                        ToastUtils.onToast("努力完善中...");
+                        break;
+                }
+            }
+        });
+
+        functionsManage.addFunction(new FunctionWithParamOnly<Integer>(ThreeTabFragment.INTERFACE_WITHP) {
+            @Override
+            public void function(Integer data) {
+                switch (data){
+                    case 0:
+                            onEnter(new AmountFragment(), AmountFragment.TAG, true);
+                        break;
+                    case 1:
+                            onEnter(new DialogFragment(), DialogFragment.TAG, true);
+                        break;
+                    case 2:
+                        onEnter(new EditTextFragment(), EditTextFragment.TAG, true);
+                        break;
+                    default:
+                        ToastUtils.onToast("努力完善中...");
+                        break;
+                }
+            }
+        });
+
+        /**
+         * 返回按钮的事件监听
+         */
+        functionsManage.addFunction(new FunctionNoParamNoResult(AmountFragment.INTERFACE_BACK) {
+            @Override
+            public void function() {
+                onKeyBack();
+            }
+        });
+
 
         functionsManage.addFunction(new FunctionNoParamNoResult(CityFragment.INTERFACE_NPNR) {
             @Override
@@ -170,16 +221,21 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
 
         switch (keyCode){
             case KeyEvent.KEYCODE_BACK:
-                fragmentManager.popBackStack();
-                if (mListFragment.size() > 1) {
-                    mListFragment.remove(mListFragment.size() - 1);
-                    curFragment = mListFragment.get(mListFragment.size()-1);
-                }else{
-                    finish();
-                }
+                onKeyBack();
                 break;
         }
         return true;
+    }
+
+    public void onKeyBack(){
+
+        fragmentManager.popBackStack();
+        if (mListFragment.size() > 1) {
+            mListFragment.remove(mListFragment.size() - 1);
+            curFragment = mListFragment.get(mListFragment.size()-1);
+        }else{
+            finish();
+        }
     }
 
 

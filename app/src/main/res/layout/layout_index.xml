@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_RecyclerView"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/layout_public_titlebar"></include>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
-    <com.wsq.library.views.view.IndexView
-        android:id="@+id/index_View"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
+        <com.wsq.library.views.view.IndexView
+            android:id="@+id/index_View"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
 
-        />
-    <TextView
-        android:id="@+id/tv_index"
-        android:layout_width="@dimen/default_height_3"
-        android:layout_height="@dimen/default_height_3"
-        android:background="@drawable/shape_index_dialog"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text=""
-        android:textSize="25sp"
-        android:textColor="@color/color_white"
-        />
-</RelativeLayout>
+            />
+        <TextView
+            android:id="@+id/tv_index"
+            android:layout_width="@dimen/default_height_3"
+            android:layout_height="@dimen/default_height_3"
+            android:background="@drawable/shape_index_dialog"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25sp"
+            android:textColor="@color/color_white"
+            />
+    </RelativeLayout>
+</LinearLayout>
