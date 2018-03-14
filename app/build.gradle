@@ -54,6 +54,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     implementation files('libs/umeng-analytics-7.4.4.jar')
     implementation files('libs/umeng-common-1.4.4.jar')
+
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->

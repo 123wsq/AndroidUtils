@@ -7,8 +7,10 @@
 
     <include layout="@layout/layout_public_titlebar"></include>
 
-    <com.wsq.library.views.view.CustomEditText
+    <com.wsq.library.views.view.EditTextWithDel
         android:layout_width="match_parent"
-        android:layout_height="@dimen/default_height_3"/>
+        android:layout_height="@dimen/default_height_3"
+        android:text=""
+        />
 
 </LinearLayout>

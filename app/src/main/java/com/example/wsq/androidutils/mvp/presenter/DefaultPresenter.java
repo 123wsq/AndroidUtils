@@ -167,4 +167,98 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
             });
         }
     }
+
+    /**
+     * 轮播图图片地址
+     */
+    public void showBannerData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showBannerUrl(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 数据库操作
+     */
+    public void showDbData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showSqlite(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+
+                public void onError() {
+
+                }
+
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 刷新
+     */
+    public void showRefreshData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view!=null){
+            defaultModel.showRefreshData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+
+                public void onError() {
+
+                }
+
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
 }

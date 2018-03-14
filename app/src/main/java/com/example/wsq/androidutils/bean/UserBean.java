@@ -1,10 +1,12 @@
 package com.example.wsq.androidutils.bean;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by wsq on 2018/1/23.
  */
 
-public class UserBean {
+public class UserBean extends DataSupport{
 
     private int id;
 
@@ -18,6 +20,13 @@ public class UserBean {
         super();
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param age
+     * @param sex
+     */
     public UserBean(int id, String name, int age, String sex) {
         this.id = id;
         this.name = name;

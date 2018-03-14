@@ -9,13 +9,15 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.wsq.library.tools.ToastUtils;
 
+import org.litepal.LitePalApplication;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by wsq on 2018/1/6.
  */
 
-public class BaseApplication extends Application{
+public class BaseApplication extends LitePalApplication {
 
     @Override
     public void onCreate() {

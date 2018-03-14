@@ -1,6 +1,7 @@
 package com.example.wsq.androidutils.activity;
 
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,12 +14,16 @@ import com.example.wsq.androidutils.bean.UserBean;
 import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AmountFragment;
+import com.example.wsq.androidutils.fragment.main.custom.BannerFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CitySearchFragment;
+import com.example.wsq.androidutils.fragment.main.custom.DbFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DialogFragment;
 import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
+import com.example.wsq.androidutils.fragment.main.custom.ImageFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
+import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
 
@@ -94,6 +99,31 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
         curFragment = fragment;
     }
 
+    /**
+     *
+     * @param fragment
+     * @param tag
+     * @param isBack  是否支持返回
+     */
+    public void onEnter(Fragment fragment, String tag, Bundle param, boolean isBack){
+        FragmentTransaction fTransaction = fragmentManager.beginTransaction();
+        List<Fragment> fragments = fragmentManager.getFragments();
+
+
+        if (curFragment != null) fTransaction.hide(curFragment);
+
+        if (!fragment.isAdded()) {
+            fragment.setArguments(param);
+            mListFragment.add(fragment);
+            fTransaction.add(R.id.layout_content, fragment, tag);
+            if (isBack)fTransaction.addToBackStack(tag);
+            fTransaction.show(fragment).commit();
+        } else {
+            fTransaction.show(fragment).commit();
+        }
+        curFragment = fragment;
+    }
+
 
     public void setFunctionsForFragment(String tag){
 
@@ -151,6 +181,18 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 2:
                         onEnter(new EditTextFragment(), EditTextFragment.TAG, true);
+                        break;
+                    case 3:
+                        onEnter(new BannerFragment(), BannerFragment.TAG, true);
+                        break;
+                    case 4:
+                        onEnter(new DbFragment(), DbFragment.TAG, true);
+                        break;
+                    case 5:
+                        onEnter(new ImageFragment(), ImageFragment.TAG, true);
+                        break;
+                    case 6:
+                        onEnter(new RefreshFragment(), RefreshFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");

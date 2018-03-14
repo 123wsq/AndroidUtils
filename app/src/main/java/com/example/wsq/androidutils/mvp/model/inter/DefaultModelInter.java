@@ -19,4 +19,10 @@ public interface DefaultModelInter {
     void showDialogData(Callback<List<String>> callback);
 
     void showMediaData(Callback<List<String>> callback);
+
+    void showBannerUrl(Callback<List<String>> callback);
+
+    void showSqlite(Callback<List<String>> callback);
+
+    void showRefreshData(Callback<List<String>> callback);
 }
