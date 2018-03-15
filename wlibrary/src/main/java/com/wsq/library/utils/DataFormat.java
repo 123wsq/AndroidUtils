@@ -459,7 +459,7 @@ public class DataFormat {
      * @return
      */
     public static boolean isNumber(String str){
-        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+        Pattern pattern = Pattern.compile("^[+-]?(([0-9]\\\\d*))(\\\\.\\\\d+)?$");
         Matcher isNum = pattern.matcher(str);
         if( !isNum.matches() ){
             return false;

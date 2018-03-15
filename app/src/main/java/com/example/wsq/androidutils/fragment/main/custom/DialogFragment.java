@@ -124,7 +124,7 @@ public class DialogFragment extends BaseFragment<DefaultView, DefaultPresenter<D
                 dialogInterface.dismiss();
             }
         });
-        builder.setBtnColor("#FF0000");
+        builder.setOkBtnColor("#FF0000");
         builder.setTitleColor("#00FF00");
         builder.setMessageColor("#0000FF");
         builder.create().show();

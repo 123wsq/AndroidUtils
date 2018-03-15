@@ -25,4 +25,6 @@ public interface DefaultModelInter {
     void showSqlite(Callback<List<String>> callback);
 
     void showRefreshData(Callback<List<String>> callback);
+
+    void showValidateData(Callback<List<String>> callback);
 }

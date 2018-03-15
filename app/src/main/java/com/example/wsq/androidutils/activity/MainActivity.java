@@ -14,24 +14,25 @@ import com.example.wsq.androidutils.bean.UserBean;
 import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AmountFragment;
+import com.example.wsq.androidutils.fragment.main.custom.AnimatorFragment;
 import com.example.wsq.androidutils.fragment.main.custom.BannerFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CitySearchFragment;
+import com.example.wsq.androidutils.fragment.main.custom.DataValidateFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DbFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DialogFragment;
 import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ImageFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
+import com.example.wsq.androidutils.fragment.main.custom.ReflectFragment;
 import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
-
 import com.example.wsq.androidutils.fragment.main.tab.ThreeTabFragment;
 import com.example.wsq.androidutils.fragment.main.tab.TwoTabFragment;
 import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
-import com.umeng.analytics.MobclickAgent;
 import com.wsq.library.struct.FunctionNoParamNoResult;
 import com.wsq.library.struct.FunctionWithParamAndResult;
 import com.wsq.library.struct.FunctionWithParamOnly;
@@ -41,7 +42,6 @@ import com.wsq.library.tools.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
 
@@ -63,10 +63,7 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
     public void initView() {
         mListFragment = new ArrayList<>();
         fragmentManager = getSupportFragmentManager();
-        MobclickAgent.onProfileSignIn("wsq");
         ipresenter.showData();
-
-
     }
 
     @Override
@@ -81,39 +78,25 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
      * @param tag
      * @param isBack  是否支持返回
      */
-    public void onEnter( Fragment fragment, String tag, boolean isBack){
-        FragmentTransaction fTransaction = fragmentManager.beginTransaction();
-        List<Fragment> fragments = fragmentManager.getFragments();
-
-
-        if (curFragment != null) fTransaction.hide(curFragment);
-
-        if (!fragment.isAdded()) {
-            mListFragment.add(fragment);
-            fTransaction.add(R.id.layout_content, fragment, tag);
-            if (isBack)fTransaction.addToBackStack(tag);
-            fTransaction.show(fragment).commit();
-        } else {
-            fTransaction.show(fragment).commit();
-        }
-        curFragment = fragment;
+    private void onEnter( Fragment fragment, String tag, boolean isBack){
+        onEnter(fragment, tag, null, isBack);
     }
 
     /**
      *
      * @param fragment
      * @param tag
+     * @param param 传递的参数
      * @param isBack  是否支持返回
      */
-    public void onEnter(Fragment fragment, String tag, Bundle param, boolean isBack){
+    private void onEnter(Fragment fragment, String tag, Bundle param, boolean isBack){
         FragmentTransaction fTransaction = fragmentManager.beginTransaction();
-        List<Fragment> fragments = fragmentManager.getFragments();
-
 
         if (curFragment != null) fTransaction.hide(curFragment);
 
         if (!fragment.isAdded()) {
-            fragment.setArguments(param);
+            if (param != null) fragment.setArguments(param);
+
             mListFragment.add(fragment);
             fTransaction.add(R.id.layout_content, fragment, tag);
             if (isBack)fTransaction.addToBackStack(tag);
@@ -161,6 +144,15 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                 switch (data){
                     case 0:
                         onEnter(new MediaFragment(), MediaFragment.TAG, true);
+                        break;
+                    case 1:
+                        onEnter(new DataValidateFragment(), DataValidateFragment.TAG, true);
+                        break;
+                    case 2:
+                        onEnter(new AnimatorFragment(), AnimatorFragment.TAG, true);
+                        break;
+                    case 3:
+                        onEnter(new ReflectFragment(), ReflectFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");
@@ -269,7 +261,7 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
         return true;
     }
 
-    public void onKeyBack(){
+    private void onKeyBack(){
 
         fragmentManager.popBackStack();
         if (mListFragment.size() > 1) {

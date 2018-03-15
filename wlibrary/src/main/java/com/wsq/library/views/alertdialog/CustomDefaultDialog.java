@@ -43,12 +43,16 @@ public class CustomDefaultDialog extends Dialog {
 
         private String ok, cancel, message;
         private boolean isInput = false;   //是否显示输入框
-        private String inputHint;
         private String mTitleColor = "#000000";
         private String mMsgColor = mTitleColor;
-        private String mBtnColor = "#555555";
+        private String mOkBtnFontColor = "#555555";
+        private String mCancelBtnFontColor = "#555555";
+        private String mOkBtnbackgroundColor = "#FFFFFF";
+        private String mCancelBtnbackgroundColor = "#FFFFFF";
+
         private String mHintColor = "#A9A9A9";
         private String mHintMsg;
+        private String mInputMsg;
         private boolean isCloseDiaglog = false;    //是否显示右上角关闭按钮
         private boolean isShowMessage = true;  //表示是否显示消息内容
         private int requestCode = -1;
@@ -72,11 +76,6 @@ public class CustomDefaultDialog extends Dialog {
             return this;
         }
 
-        public Builder setHintInput(String inputHint) {
-            this.inputHint = inputHint;
-            return this;
-        }
-
         public Builder setTitleColor(String titleColor) {
             this.mTitleColor = titleColor;
             return this;
@@ -96,8 +95,20 @@ public class CustomDefaultDialog extends Dialog {
             this.mMsgColor = msgColor;
             return this;
         }
-        public Builder setBtnColor(String btnColor) {
-            this.mBtnColor = btnColor;
+        public Builder setOkBtnColor(String okbtnColor) {
+            this.mOkBtnFontColor = okbtnColor;
+            return this;
+        }
+        public Builder setCancelBtnColor(String cancelbtnColor) {
+            this.mCancelBtnFontColor = cancelbtnColor;
+            return this;
+        }
+        public Builder setOkBtnBackgroundColor(String okbtnbackgroundColor) {
+            this.mOkBtnbackgroundColor = okbtnbackgroundColor;
+            return this;
+        }
+        public Builder setCancelBtnbackgroundColor(String cancelbtnbackgroundColor) {
+            this.mCancelBtnbackgroundColor = cancelbtnbackgroundColor;
             return this;
         }
 
@@ -108,6 +119,10 @@ public class CustomDefaultDialog extends Dialog {
 
         public Builder setHintMsg(String hintMsg){
             this.mHintMsg = hintMsg;
+            return this;
+        }
+        public Builder setInputMsg(String inputMsg){
+            this.mInputMsg = inputMsg;
             return this;
         }
         public Builder setRequestCode(int code) {
@@ -145,23 +160,19 @@ public class CustomDefaultDialog extends Dialog {
 
             //设置标题栏
             TextView tv_title = (TextView) layout.findViewById(R.id.title);
-            tv_title.setText(title);
-            tv_title.setTextColor(Color.parseColor(mTitleColor));
-            tv_title.getPaint().setFakeBoldText(true);
+
 
             //右上角关闭按钮
             ImageView iv_close = layout.findViewById(R.id.iv_close);
-            iv_close.setVisibility(isCloseDiaglog ? View.VISIBLE : View.GONE);
+
 
             //显示的内容
             TextView dialog_message = (TextView) layout.findViewById(R.id.dialog_message);
-            dialog_message.setText(message);
-            dialog_message.setVisibility(isShowMessage ? View.VISIBLE : View.GONE);
+
 
             //显示输入框
             final EditText tv_inputMessage = layout.findViewById(R.id.tv_inputMessage);
-            tv_inputMessage.setVisibility(isInput ? View.VISIBLE : View.GONE);
-            tv_inputMessage.setHint(isInput ? inputHint : "");
+
 
 
             //按钮点击显示
@@ -176,8 +187,38 @@ public class CustomDefaultDialog extends Dialog {
 
             Button dialog_ok = (Button) layout.findViewById(R.id.dialog_ok);
             Button dialog_cancel = (Button) layout.findViewById(R.id.dialog_cancel);
+
+
+            /**
+             * 设置字体颜色
+             *
+             */
+            tv_title.setText(title);
+            tv_title.setTextColor(Color.parseColor(mTitleColor));
+            tv_title.getPaint().setFakeBoldText(true);
+            tv_title.setTextColor(Color.parseColor(mTitleColor));
+
+            dialog_message.setTextColor(Color.parseColor(mMsgColor));
+            dialog_message.setText(message);
+            dialog_message.setVisibility(isShowMessage ? View.VISIBLE : View.GONE);
+
+            tv_inputMessage.setTextColor(Color.parseColor(mMsgColor));
+            tv_inputMessage.setHintTextColor(Color.parseColor(mHintColor));
+            tv_inputMessage.setText(mInputMsg);
+            tv_inputMessage.setVisibility(isInput ? View.VISIBLE : View.GONE);
+            tv_inputMessage.setHint(TextUtils.isEmpty(mHintMsg) ? "请输入" : mHintMsg);
+
             dialog_ok.setText(ok +"");
+            dialog_ok.setTextColor(Color.parseColor(mOkBtnFontColor));
+            dialog_ok.setBackgroundColor(Color.parseColor(mOkBtnbackgroundColor));
+
             dialog_cancel.setText(cancel +"");
+            dialog_cancel.setTextColor(Color.parseColor(mCancelBtnFontColor));
+            dialog_cancel.setBackgroundColor(Color.parseColor(mCancelBtnbackgroundColor));
+
+            iv_close.setVisibility(isCloseDiaglog ? View.VISIBLE : View.GONE);
+
+
 
             //关闭按钮事件
             if (isCloseDiaglog){
@@ -235,18 +276,7 @@ public class CustomDefaultDialog extends Dialog {
                 dialig_view.setVisibility(View.VISIBLE);
             }
 
-            /**
-             * 设置字体颜色
-             *
-             */
-            tv_title.setTextColor(Color.parseColor(mTitleColor));
-            dialog_message.setTextColor(Color.parseColor(mMsgColor));
-            tv_inputMessage.setTextColor(Color.parseColor(mMsgColor));
-            tv_inputMessage.setHintTextColor(Color.parseColor(mHintColor));
-            dialog_ok.setTextColor(Color.parseColor(mBtnColor));
-            dialog_cancel.setTextColor(Color.parseColor(mBtnColor));
 
-            tv_inputMessage.setHint(TextUtils.isEmpty(mHintMsg) ? "请输入" : mHintMsg);
             /**
              * 只需要一个按钮的情况
              * 1 只需要确定按钮

@@ -26,7 +26,9 @@ public class DefaultModelImpl implements DefaultModelInter {
     public void showTwoData(Callback<List<String>> callback) {
         List<String> list = new ArrayList<>();
         list.add("多媒体");
-
+        list.add("数据验证");
+        list.add("动画");
+        list.add("反射");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -41,6 +43,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("数据库");
         list.add("图片加载");
         list.add("刷新");
+
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -99,6 +102,18 @@ public class DefaultModelImpl implements DefaultModelInter {
         for (int i = 0; i < 20; i++) {
             list.add("这个是第 " +i+" 个数据");
         }
+        callback.onSuccess(list);
+        callback.onComplete();
+    }
+
+    @Override
+    public void showValidateData(Callback<List<String>> callback) {
+
+        List<String> list = new ArrayList<>();
+        list.add("数字");
+        list.add("身份证号码");
+        list.add("银行卡号");
+        list.add("邮箱");
         callback.onSuccess(list);
         callback.onComplete();
     }

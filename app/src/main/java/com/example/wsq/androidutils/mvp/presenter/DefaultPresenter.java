@@ -7,6 +7,7 @@ import com.example.wsq.androidutils.mvp.model.inter.CityModelinter;
 import com.example.wsq.androidutils.mvp.model.inter.DefaultModelInter;
 import com.example.wsq.androidutils.mvp.view.BaseView;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
+import com.wsq.library.tools.ToastUtils;
 
 import java.util.List;
 
@@ -235,7 +236,7 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
      */
     public void showRefreshData(){
         final DefaultView view = (DefaultView) getView();
-        if (view!=null){
+        if (view != null){
             defaultModel.showRefreshData(new Callback<List<String>>() {
                 @Override
                 public void onSuccess(List<String> data) {
@@ -244,13 +245,45 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
 
                 @Override
                 public void onFailure(String msg) {
-
+                    ToastUtils.onToast(msg);
                 }
 
                 @Override
 
                 public void onError() {
+                    ToastUtils.onToast("加载错误");
+                }
 
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 数据验证
+     */
+    public void showValidateData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view != null){
+            defaultModel.showValidateData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    ToastUtils.onToast(msg);
+                }
+
+                @Override
+
+                public void onError() {
+                    ToastUtils.onToast("加载错误");
                 }
 
 

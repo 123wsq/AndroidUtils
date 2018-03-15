@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <include layout="@layout/layout_public_titlebar"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_anim_ofInt"
+                style="@style/default_button"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="动画 ofInt"
+
+                />
+            <TextView
+                android:id="@+id/tv_anim_oFloat"
+                style="@style/default_button"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="动画 oFloat"
+
+                />
+            <TextView
+                android:id="@+id/tv_anim_xml"
+                style="@style/default_button"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="动画 xml"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_anim_object"
+                style="@style/default_button"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="透明度 object"
+
+                />
+            <TextView
+                android:id="@+id/tv_anim_rotation"
+                style="@style/default_button"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="旋转 rotation"
+
+                />
+            <TextView
+                android:id="@+id/tv_anim_translation"
+                style="@style/default_button"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="平移 translation"
+
+                />
+            <TextView
+                android:id="@+id/tv_anim_scale"
+                style="@style/default_button"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/default_height_3"
+                android:text="缩放 scale"
+
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
