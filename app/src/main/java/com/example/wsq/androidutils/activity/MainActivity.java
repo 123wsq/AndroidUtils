@@ -16,10 +16,13 @@ import com.example.wsq.androidutils.fragment.main.MainFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AmountFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AnimatorFragment;
 import com.example.wsq.androidutils.fragment.main.custom.BannerFragment;
+import com.example.wsq.androidutils.fragment.main.custom.CanvasBitmapFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CitySearchFragment;
+import com.example.wsq.androidutils.fragment.main.custom.CustomControlFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DataValidateFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DbFragment;
+import com.example.wsq.androidutils.fragment.main.custom.DesignPatternFragment;
 import com.example.wsq.androidutils.fragment.main.custom.DialogFragment;
 import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ImageFragment;
@@ -154,6 +157,9 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                     case 3:
                         onEnter(new ReflectFragment(), ReflectFragment.TAG, true);
                         break;
+                    case 4:
+                        onEnter(new DesignPatternFragment(), DesignPatternFragment.TAG, true);
+                        break;
                     default:
                         ToastUtils.onToast("努力完善中...");
                         break;
@@ -185,6 +191,12 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 6:
                         onEnter(new RefreshFragment(), RefreshFragment.TAG, true);
+                        break;
+                    case 7:
+                        onEnter(new CustomControlFragment(), CustomControlFragment.TAG, true);
+                        break;
+                    case 8:
+                        onEnter(new CanvasBitmapFragment(), CanvasBitmapFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");

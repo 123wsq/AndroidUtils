@@ -3,6 +3,7 @@ package com.example.wsq.androidutils.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment implements BaseView {
 
-
+    private final String TAG = BaseFragment.class.getName();
     public static String _INTERFACE_NPNR = "_NPNR";  //没参数没有返回值
     public static String _INTERFACE_WITHP = "_WITHP";  //只有参数
     public static String _INTERFACE_WITHR = "_WITHR";  //只有返回值
@@ -29,10 +30,13 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragme
     public FunctionsManage mFunctionsManage;
     protected T ipresenter;
     private LoadingDialog dialog;
+    private long start_Time;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        start_Time = System.currentTimeMillis();
         View view  = inflater.inflate(getLayoutId(), container, false);
         dialog = new LoadingDialog(getContext());
         ipresenter = createPresenter();
@@ -94,6 +98,12 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragme
     @Override
     public void loadFail(String errorMsg) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "执行时间： "+(System.currentTimeMillis()- start_Time)+" ms");
     }
 
     @Override

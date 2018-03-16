@@ -29,6 +29,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("数据验证");
         list.add("动画");
         list.add("反射");
+        list.add("设计模式");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -43,7 +44,8 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("数据库");
         list.add("图片加载");
         list.add("刷新");
-
+        list.add("自定义控件");
+        list.add("Canvas Bitmap 交集");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -91,6 +93,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("删除");
         list.add("修改");
         list.add("查看");
+        list.add("清空");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -114,6 +117,37 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("身份证号码");
         list.add("银行卡号");
         list.add("邮箱");
+        callback.onSuccess(list);
+        callback.onComplete();
+    }
+
+    @Override
+    public void showDesignPatternData(Callback<List<String>> callback) {
+
+        List<String> list = new ArrayList<>();
+        list.add("单例模式");
+        list.add("抽象工厂模式");
+        list.add("工厂模式");
+        list.add("原型模式");
+        list.add("建造者模式");
+        list.add("适配器模式");
+        list.add("桥接模式");
+        list.add("装饰模式");
+        list.add("组合模式");
+        list.add("外观模式");
+        list.add("享元模式");
+        list.add("代理模式");
+        list.add("观察者模式");
+        list.add("中介者模式");
+        list.add("访问者模式");
+        list.add("解释器模式");
+        list.add("迭代器模式");
+        list.add("备忘录模式");
+        list.add("责任链模式");
+        list.add("状态模式");
+        list.add("策略模式");
+        list.add("命令模式");
+        list.add("模板模式");
         callback.onSuccess(list);
         callback.onComplete();
     }

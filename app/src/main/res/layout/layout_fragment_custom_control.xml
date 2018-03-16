@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/layout_public_titlebar"></include>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+
+            <com.wsq.library.views.view.SwitchView
+                android:id="@+id/sv_SwitchView"
+                android:layout_width="100dp"
+                android:layout_height="40dp" />
+
+            <com.wsq.library.views.view.RoundImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/default_margin_3"
+                android:src="@drawable/image_header_bg"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

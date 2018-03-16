@@ -117,6 +117,9 @@ public class DbFragment extends BaseFragment<DefaultView, DefaultPresenter<Defau
                     List<UserBean> list = DataSupport.findAll(UserBean.class);
                     ToastUtils.onToast(list.toString());
                     break;
+                case 4:
+                    DataSupport.deleteAll(UserBean.class);
+                    break;
             }
         }
 

@@ -294,4 +294,33 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
             });
         }
     }
+
+    public void showDesignPatternData(){
+        final DefaultView view = (DefaultView) getView();
+        if (view != null){
+            defaultModel.showDesignPatternData(new Callback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    ToastUtils.onToast(msg);
+                }
+
+                @Override
+
+                public void onError() {
+                    ToastUtils.onToast("加载错误");
+                }
+
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
 }

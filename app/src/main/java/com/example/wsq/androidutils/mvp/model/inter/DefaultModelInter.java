@@ -27,4 +27,6 @@ public interface DefaultModelInter {
     void showRefreshData(Callback<List<String>> callback);
 
     void showValidateData(Callback<List<String>> callback);
+
+    void showDesignPatternData(Callback<List<String>> callback);
 }
