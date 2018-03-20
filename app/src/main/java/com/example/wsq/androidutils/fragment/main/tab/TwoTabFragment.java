@@ -52,6 +52,7 @@ public class TwoTabFragment extends BaseFragment<DefaultView, DefaultPresenter<D
 
     @Override
     public void initView() {
+
         mData = new ArrayList<>();
 
         rv_RecyclerView.addItemDecoration(new RecyclerViewDivider(

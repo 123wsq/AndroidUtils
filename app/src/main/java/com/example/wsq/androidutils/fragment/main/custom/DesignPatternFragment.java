@@ -3,6 +3,7 @@ package com.example.wsq.androidutils.fragment.main.custom;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,9 +23,15 @@ import com.wsq.library.views.adapter.DefaultAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2018/3/13 0013.
@@ -100,6 +107,34 @@ public class DesignPatternFragment extends BaseFragment<DefaultView, DefaultPres
                     UserInfo info =factory.createUser(OldUser.class);
                     ToastUtils.onToast("name="+info.getName()+", sex = "+info.getSex()+", age = "+info.getAge());
                     break;
+                case 12:
+                    //注册观察者(这个方法名看起来有点怪，还不如写成regisiterSubscriber(..)或者干脆addSubscriber(..))
+                    //注册后就会开始调用call()中的观察者执行的方法 onNext() onCompleted()等
+//                    observable.subscribe(subscriber);
+                    Observable.just(1,2,3,4,5,6,7,8,9,10)
+                            .timeout(1000, TimeUnit.MILLISECONDS)
+                            .filter(new Func1<Integer, Boolean>() {
+                                @Override
+                                public Boolean call(Integer integer) {
+                                    return integer>5;
+                                }
+                            }).subscribe(new Subscriber<Integer>() {
+                        @Override
+                        public void onCompleted() {
+                            System.out.println("Sequence complete.");
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            System.err.println("Error: " + e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(Integer integer) {
+                            System.out.println("Next: " + integer);
+                        }
+                    });
+                    break;
             }
         }
 
@@ -108,4 +143,39 @@ public class DesignPatternFragment extends BaseFragment<DefaultView, DefaultPres
 
         }
     };
+
+    /**
+     * 创建一个被观察者(发布者)
+     */
+    Observable observable = Observable.create(new Observable.OnSubscribe<Integer>() {
+        @Override
+        public void call(Subscriber<? super Integer> o) {
+
+            o.onNext(101);
+            o.onNext(102);
+            o.onNext(103);
+            o.onCompleted();
+        }
+    });
+
+    /**
+     * 创建一个观察者
+     */
+    Subscriber<Integer> subscriber = new Subscriber<Integer>() {
+        @Override
+        public void onCompleted() {
+            Log.d(TAG, "onCompleted.. ");
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            Log.d(TAG, "subscriber onError.. " + e.getMessage());
+        }
+
+        @Override
+        public void onNext(Integer integer) {
+            Log.d(TAG, "onNext.. integer:" + integer);
+        }
+    };
 }
+
