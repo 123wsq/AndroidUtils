@@ -54,9 +54,13 @@ public class DefaultModelImpl implements DefaultModelInter {
     public void showDialogData(Callback<List<String>> callback) {
         List<String> list = new ArrayList<>();
         list.add("单个按钮");
-        list.add("两个按钮");
         list.add("求返回值");
-        list.add("变换颜色");
+        list.add("两个按钮");
+        list.add("两返回值");
+        list.add("标题颜色");
+        list.add("内容颜色");
+        list.add("按钮颜色");
+        list.add("按钮背景色");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -117,6 +121,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("身份证号码");
         list.add("银行卡号");
         list.add("邮箱");
+        list.add("权限");
         callback.onSuccess(list);
         callback.onComplete();
     }

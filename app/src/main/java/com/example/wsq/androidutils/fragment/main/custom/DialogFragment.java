@@ -14,6 +14,7 @@ import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
 import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.wsq.library.listener.OnRecyclerViewItemClickListener;
+import com.wsq.library.tools.DialogTools;
 import com.wsq.library.tools.RecyclerViewDivider;
 import com.wsq.library.tools.ToastUtils;
 import com.wsq.library.utils.DensityUtil;
@@ -87,7 +88,97 @@ public class DialogFragment extends BaseFragment<DefaultView, DefaultPresenter<D
         @Override
         public void onRecyclerItemClickListener(View view, int position) {
 
+            switch (position){
+                case 0:
+                    DialogTools.showDialog(getActivity(), "确定", "提示", "这个是在测试单个按钮", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 1:
+                    DialogTools.showDialog(getActivity(), "确定", "提示", "这个是在测试输入框的返回值", false, new OnDialogClickListener() {
+                        @Override
+                        public void onClick(CustomDefaultDialog dialog, String result, int requestCode) {
+                            ToastUtils.onToast(result);
+                            dialog.dismiss();
+                        }
+                    });
+                    break;
+                case 2:
+                    DialogTools.showDialog(getActivity(), "确定", "取消", "提示", "这个是在测试两个按钮的显示", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                         dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 3:
+                    DialogTools.showDialog(getActivity(), "确定", "取消", "提示", "这个是在测试两个按钮的返回", true, new OnDialogClickListener() {
+                        @Override
+                        public void onClick(CustomDefaultDialog dialog, String result, int requestCode) {
+
+                            ToastUtils.onToast(result);
+                            dialog.dismiss();
+                        }
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 4:
+                    DialogTools.showDialog(getActivity(), "确定", "提示", "这个是在测试修改标题颜色", "#FF0000", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 5:
+                    DialogTools.showDialog(getActivity(), "确定", "提示", "这个是在测试修改内容颜色", "#FF0000","#FFFF00", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 6:
+                    DialogTools.showDialog(getActivity(), "确定", "提示", "这个是在测试修改按钮颜色",
+                            "#FF0000","#FFFF00","#ac54bb", "#FF00FF", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    break;
+                case 7:
+                    DialogTools.showDialog(getActivity(), "确定", "取消", "提示", "这个是在测试修改按钮背景颜色",
+                            "#FF0000", "#FFFF00", "#FFFFFF", "#FFFFFF", "#FF0000", "#0000FF", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                    break;
+                default:
                     onShowDialog();
+                    break;
+            }
+
         }
 
         @Override
@@ -107,7 +198,7 @@ public class DialogFragment extends BaseFragment<DefaultView, DefaultPresenter<D
     private void onShowDialog(){
 
         CustomDefaultDialog.Builder builder = new CustomDefaultDialog.Builder(getActivity());
-        builder.setMessage("这个是消息内容");
+        builder.setMessage("努力完善中，请稍后");
 //        builder.setShowMessage(false);
         builder.setTitle("提示");
 //        builder.setIsShowInput(true);

@@ -1,5 +1,6 @@
 package com.example.wsq.androidutils.fragment.main.custom;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.wsq.library.tools.RecyclerViewDivider;
 import com.wsq.library.tools.ToastUtils;
 import com.wsq.library.utils.DataFormat;
 import com.wsq.library.utils.DensityUtil;
+
 import com.wsq.library.views.adapter.DefaultAdapter;
 import com.wsq.library.views.alertdialog.CustomDefaultDialog;
 import com.wsq.library.views.alertdialog.OnDialogClickListener;
@@ -39,6 +41,8 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
     public static final String INTERFACE_WITHP = TAG + _INTERFACE_WITHP;
     public static final String INTERFACE_WITHR = TAG + _INTERFACE_NPNR;
     public static final String INTERFACE_WITHPR = TAG +_INTERFACE_WITHPR;
+
+    private final int PER_CAMERA = 3;
 
     @BindView(R.id.rv_RecyclerView)
     RecyclerView rv_RecyclerView;
@@ -98,7 +102,7 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
 
             switch (position){
                 case 0:
-                    DialogTools.showDialog(getContext(), "确定", "取消", "数字验证", "", false, true,
+                    DialogTools.showDialog(getContext(), "确定",  "数字验证", "", false,
                             new OnDialogClickListener() {
                         @Override
                         public void onClick(CustomDefaultDialog dialog, String result, int requestCode) {
@@ -107,15 +111,13 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
                             ToastUtils.onToast((DataFormat.isNumber(result.trim()) ? "是" : "不是")+"数字");
                             dialog.dismiss();
                         }
-                    }, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
                     });
                     break;
                 case 1:
 
+
+                    break;
+                case 4:
                     break;
                 default:
                     ToastUtils.onToast("完善中。。。");
@@ -128,4 +130,5 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
 
         }
     };
+
 }

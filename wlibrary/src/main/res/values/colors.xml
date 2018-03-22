@@ -11,7 +11,7 @@
     <color name="color_disable_btn">#E4E4E4</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_gray">#A9A9A9</color>
-    <color name="line_color">#bdbdbd</color>
+    <color name="line_color">#55bdbdbd</color>
     <color name="default_color">#555555</color>
     <color name="cancel_popup_color">#3F51B5</color>
 
