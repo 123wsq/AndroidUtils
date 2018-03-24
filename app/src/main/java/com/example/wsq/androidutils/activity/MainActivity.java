@@ -15,6 +15,7 @@ import com.example.wsq.androidutils.fragment.TabFragment;
 import com.example.wsq.androidutils.fragment.main.MainFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AmountFragment;
 import com.example.wsq.androidutils.fragment.main.custom.AnimatorFragment;
+import com.example.wsq.androidutils.fragment.main.custom.AppManagerFragment;
 import com.example.wsq.androidutils.fragment.main.custom.BannerFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CanvasBitmapFragment;
 import com.example.wsq.androidutils.fragment.main.custom.CityFragment;
@@ -30,6 +31,7 @@ import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ReflectFragment;
 import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
+import com.example.wsq.androidutils.fragment.main.custom.UtilsValidateFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
 import com.example.wsq.androidutils.fragment.main.tab.ThreeTabFragment;
@@ -44,7 +46,9 @@ import com.wsq.library.struct.FunctionsManage;
 import com.wsq.library.tools.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Observable;
 
 public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
 
@@ -118,6 +122,12 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
 
         FunctionsManage functionsManage = FunctionsManage.getInstance();
 
+        functionsManage.addFunction(new FunctionWithParamOnly<Object[]>(TabFragment.INTERFACE_WITHR1) {
+            @Override
+            public void function(Object... data) {
+                ToastUtils.onToast(Arrays.toString(data));
+            }
+        });
 
         functionsManage.addFunction(new FunctionWithParamOnly<Integer>(OneTabFragment.INTERFACE_WITHP) {
             @Override
@@ -134,6 +144,12 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 3:
                         onEnter(new CityFragment(), CityFragment.TAG, true);
+                        break;
+                    case 4:
+                        onEnter(new UtilsValidateFragment(), UtilsValidateFragment.TAG, true);
+                        break;
+                    case 5:
+                        onEnter(new TabFragment(), TabFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");
@@ -205,17 +221,19 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
             }
         });
 
-        /**
-         * 返回按钮的事件监听
-         */
-        functionsManage.addFunction(new FunctionNoParamNoResult(AmountFragment.INTERFACE_BACK) {
+        functionsManage.addFunction(new FunctionWithParamOnly<Integer>(UtilsValidateFragment.INTERFACE_WITHP) {
             @Override
-            public void function() {
-                onKeyBack();
+            public void function(Integer data) {
+                switch (data){
+                    case 0:
+                        onEnter(new AmountFragment(), AmountFragment.TAG, true);
+                        break;
+                    case 1:
+                        onEnter(new AppManagerFragment(), AppManagerFragment.TAG, true);
+                        break;
+                }
             }
         });
-
-
         functionsManage.addFunction(new FunctionNoParamNoResult(CityFragment.INTERFACE_NPNR) {
             @Override
             public void function() {
@@ -223,6 +241,18 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                 onEnter(new CitySearchFragment(), CitySearchFragment.TAG, true);
             }
         });
+
+        /**
+         * 返回按钮的事件监听
+         */
+        functionsManage.addFunction(new FunctionNoParamNoResult(BaseFragment.INTERFACE_BACK) {
+            @Override
+            public void function() {
+                onKeyBack();
+            }
+        });
+
+
 
 
 

@@ -18,6 +18,10 @@ public class WSharedUtils {
 
     private static final String SHARED_NAME = "WSharedUtils";
 
+    private WSharedUtils(){
+
+    }
+
     public  static void getInstance(Context context){
 
         if (sharedUtils == null){

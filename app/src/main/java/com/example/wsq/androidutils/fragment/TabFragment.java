@@ -21,7 +21,7 @@ public class TabFragment extends BaseFragment{
     public static final String INTERFACE_WITHP = TAG+"withParam";
     public static final String INTERFACE_WITHR = TAG+"withResult";
     public static final String INTERFACE_WITHPR = TAG +"withParamResult";
-
+    public static final String INTERFACE_WITHR1 = TAG +"withParamResult1";
 
     @Override
     protected BasePresenter createPresenter() {
@@ -39,7 +39,8 @@ public class TabFragment extends BaseFragment{
     }
 
     @OnClick({R.id.tv_interface_noParam_noResult, R.id.tv_interface_withParamOnly,
-            R.id.tv_interface_withResultOnly, R.id.tv_interface_withParamAndResult})
+            R.id.tv_interface_withResultOnly, R.id.tv_interface_withParamAndResult,
+            R.id.tv_interface_wp})
     public void OnClick(View view){
         switch (view.getId()){
             case R.id.tv_interface_noParam_noResult:
@@ -55,8 +56,11 @@ public class TabFragment extends BaseFragment{
                 ToastUtils.onToast(string);
                 break;
             case R.id.tv_interface_withParamAndResult:
-                String str = mFunctionsManage.invokeFunction(INTERFACE_WITHPR, 2018, String.class);
+                String str = mFunctionsManage.invokeFunction(INTERFACE_WITHPR,  String.class, 2018);
                 ToastUtils.onToast(str);
+                break;
+            case R.id.tv_interface_wp:
+                mFunctionsManage.invokeFunction(INTERFACE_WITHR1, "1","2","3", 4, 5, 6, true);
                 break;
         }
     }
