@@ -6,6 +6,6 @@
         android:height="0.5dp"
         android:width="5dp" />
 
-    <solid android:color="@color/line_color" />
+    <solid android:color="#bdbdbd" />
 
 </shape>
