@@ -5,7 +5,7 @@
 
     <corners android:radius="5dp"/>
 
-    <stroke android:color="@color/color_gray"
+    <stroke android:color="@color/color_disable_btn"
         android:width="1dp"
         />
 </shape>

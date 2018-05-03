@@ -84,6 +84,24 @@ public class DialogTools {
                 "", isShowMsg, true, false, null, cancelListener, listener);
     }
 
+    /**
+     * 带提示语的输入框
+     * @param context
+     * @param okStr
+     * @param cancelStr
+     * @param title
+     * @param hintmsg
+     * @param listener
+     * @param cancelListener
+     * @return
+     */
+    public static CustomDefaultDialog showDialog(Context context, String okStr, String cancelStr, String title, String hintmsg,
+                                                 OnDialogClickListener listener, DialogInterface.OnClickListener cancelListener){
+
+        return showDialog(context, okStr, cancelStr, title,  "", "", "","", "", "", "", hintmsg, "",
+                "", false, true, false, null, cancelListener, listener);
+    }
+
 
     /**
      * 修改标题颜色，只是显示一个按钮

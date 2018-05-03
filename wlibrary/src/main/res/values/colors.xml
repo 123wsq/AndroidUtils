@@ -6,7 +6,7 @@
     <color name="default_color_font">@color/black</color>
     <color name="red">#FF0000</color>
 
-    <color name="default_backgroud_color">#F2F2F2</color>
+    <color name="default_backgroud_color">#EEEEEE</color>
     <color name="default_btn_color">#0AC8CF</color>
     <color name="color_disable_btn">#E4E4E4</color>
     <color name="color_white">#FFFFFF</color>

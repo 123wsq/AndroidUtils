@@ -48,6 +48,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("刷新");
         list.add("自定义控件");
         list.add("Canvas Bitmap 交集");
+        list.add("PopupWindow");
         callback.onSuccess(list);
         callback.onComplete();
     }

@@ -29,6 +29,7 @@ import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ImageFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
+import com.example.wsq.androidutils.fragment.main.custom.PopupWindowFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ReflectFragment;
 import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
 import com.example.wsq.androidutils.fragment.main.custom.UtilsValidateFragment;
@@ -213,6 +214,9 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 8:
                         onEnter(new CanvasBitmapFragment(), CanvasBitmapFragment.TAG, true);
+                        break;
+                    case 9:
+                        onEnter(new PopupWindowFragment(), PopupWindowFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");

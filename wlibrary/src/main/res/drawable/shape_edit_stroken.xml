@@ -6,5 +6,5 @@
 
     <solid android:color="@color/color_white"></solid>
 
-    <stroke android:color="#bdbdbd" android:width="@dimen/default_height_line"></stroke>
+    <stroke android:color="@color/color_disable_btn" android:width="@dimen/default_height_line"></stroke>
 </shape>

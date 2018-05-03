@@ -71,6 +71,7 @@ public abstract class CallBackUtil<T> {
         @Override
         public String onParseResponse(Call call, Response response) {
             try {
+                response.header("");
                 return response.body().string();
             } catch (IOException e) {
                 new RuntimeException("failure");
