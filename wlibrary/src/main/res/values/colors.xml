@@ -15,5 +15,6 @@
     <color name="cancel_popup_color">#3F51B5</color>
 
     <color name="transparent">#00000000</color>
+    <color name="line_color_s">#22000000</color>
 
 </resources>
