@@ -1,6 +1,7 @@
 package com.wsq.library.tools;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,6 +40,15 @@ public class ToastUtils {
         Toast toast = new Toast(mContext);
         toast.setView(view);
         toast.setDuration(1 * 1000);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+    public static void onToast(View view,int gravity){
+
+        Toast toast = new Toast(mContext);
+        toast.setView(view);
+        toast.setDuration(1 * 1000);
+        toast.setGravity(gravity, 0, 0);
         toast.show();
     }
 }
