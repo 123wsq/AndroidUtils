@@ -1,6 +1,7 @@
 package com.wsq.library.tools;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -24,11 +25,20 @@ public class ToastUtils {
         return toastUtils;
     }
 
-    public static void onToast(String msg){
+    public  static void onToast(String msg){
 
         if (mContext == null){
             return;
         }
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public static void onToast(View view){
+
+        Toast toast = new Toast(mContext);
+        toast.setView(view);
+        toast.setDuration(1 * 1000);
+        toast.show();
     }
 }

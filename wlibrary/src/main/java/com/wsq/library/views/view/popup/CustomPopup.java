@@ -1,4 +1,4 @@
-package com.wsq.library.views.view;
+package com.wsq.library.views.view.popup;
 
 import android.app.Activity;
 import android.graphics.Color;

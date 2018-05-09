@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
-import com.wsq.library.views.view.CustomPopup;
+import com.wsq.library.views.view.popup.CustomPopup;
 
 import java.util.ArrayList;
 import java.util.List;
