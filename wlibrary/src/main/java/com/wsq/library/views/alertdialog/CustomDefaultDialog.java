@@ -311,6 +311,7 @@ public class CustomDefaultDialog extends Dialog {
             // p.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
             p.width = (int) (widthPixels * 0.75); // 宽度设置为屏幕的0.65
             dialogWindow.setAttributes(p);
+            dialog.setCanceledOnTouchOutside(true);
             dialog.setContentView(layout);
 
             return dialog;
