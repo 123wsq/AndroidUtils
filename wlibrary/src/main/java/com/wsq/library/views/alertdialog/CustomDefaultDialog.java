@@ -311,9 +311,11 @@ public class CustomDefaultDialog extends Dialog {
             // p.height = (int) (d.getHeight() * 0.6); // 高度设置为屏幕的0.6
             p.width = (int) (widthPixels * 0.75); // 宽度设置为屏幕的0.65
             dialogWindow.setAttributes(p);
-            dialog.setCanceledOnTouchOutside(true);
+            //setCanceledOnTouchOutside(false);调用这个方法时，按对话框以外的地方不起作用。按返回键还起作用
+//            dialog.setCanceledOnTouchOutside(true);
             dialog.setContentView(layout);
-
+            //setCancelable(false);调用这个方法时，按对话框以外的地方不起作用。按返回键也不起作用
+            dialog.setCancelable(false);
             return dialog;
         }
 
