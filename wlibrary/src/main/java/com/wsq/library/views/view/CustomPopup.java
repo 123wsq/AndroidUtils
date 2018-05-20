@@ -16,16 +16,10 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-
 import com.example.wlibrary.R;
-
-import java.util.List;
-
 import com.wsq.library.utils.DensityUtil;
 
-/**
- * Created by wsq on 2017/12/12.
- */
+import java.util.List;
 
 public class CustomPopup extends PopupWindow{
 
@@ -34,168 +28,151 @@ public class CustomPopup extends PopupWindow{
     private List<String> mData;
     private String textColor = "#000000";
     private View.OnClickListener onClickListener;
-
-
     private PopupItemListener listener;
-    public CustomPopup(Activity context,  List<String> list, View.OnClickListener clickListener, final PopupItemListener listener){
 
+    public CustomPopup(Activity context, List<String> list, View.OnClickListener clickListener, final PopupItemListener listener)
+    {
         this.mContext = context;
         this.mData = list;
         this.onClickListener = clickListener;
         this.listener = listener;
-        this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        popupView = LayoutInflater.from(context).inflate(R.layout.layout_default_popup, null);
-        TextView tv_cancel =  popupView.findViewById(R.id.tv_cancel);
+        setSoftInputMode(16);
+        this.popupView = LayoutInflater.from(context).inflate(R.layout.layout_default_popup, null);
+        TextView tv_cancel = (TextView)this.popupView.findViewById(R.id.tv_cancel);
 
-        tv_cancel.setOnClickListener(onClickListener);
-        ListView listview = popupView.findViewById(R.id.listview);
+        tv_cancel.setOnClickListener(this.onClickListener);
+        ListView listview = (ListView)this.popupView.findViewById(R.id.listview);
         MyAdapter adapter = new MyAdapter();
         listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                listener.onClickItemListener(position, mData.get(position));
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                listener.onClickItemListener(position, (String)CustomPopup.this.mData.get(position));
             }
         });
-
         initPopup();
-
     }
 
+    public void initPopup()
+    {
+        int w = this.mContext.getResources().getDisplayMetrics().widthPixels;
+        int h = this.mContext.getResources().getDisplayMetrics().heightPixels;
 
+        setContentView(this.popupView);
 
+        setWidth((int)(w * 0.9D));
 
-    public void initPopup(){
-
-        int w = mContext.getResources().getDisplayMetrics().widthPixels;
-        int h = mContext.getResources().getDisplayMetrics().heightPixels;
-        // 设置按钮监听
-        // 设置SelectPicPopupWindow的View
-        this.setContentView(popupView);
-        // 设置SelectPicPopupWindow弹出窗体的宽
-        this.setWidth((int)(w*0.9));
-        //
-        // 设置SelectPicPopupWindow弹出窗体的高
         int height = 0;
-        if (null != mData) {
-            if (h / 2 <= DensityUtil.dp2px(mContext, (mData.size() * 50) + 90 + 30)) {
+        if (null != this.mData)
+        {
+            if (h / 2 <= DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90 + 30)) {
                 height = h / 2;
             } else {
-                height = DensityUtil.dp2px(mContext, (mData.size() * 50) + 90+ 30);
+                height = DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90 + 30);
             }
-        }else{
-            height = h/2;
         }
-        this.setHeight(height);
-        // 设置SelectPicPopupWindow弹出窗体可点击
-        this.setFocusable(true);
-        // 设置SelectPicPopupWindow弹出窗体动画效果
-        this.setAnimationStyle(R.style.style_pop);
-        // 实例化一个ColorDrawable颜色为半透明
-        ColorDrawable dw = new ColorDrawable(0x00000000);
-        // 设置SelectPicPopupWindow弹出窗体的背景
-        this.setBackgroundDrawable(new BitmapDrawable());
-        this.setOutsideTouchable(true);
-        //在PopupWindow里面就加上下面代码，让键盘弹出时，不会挡住pop窗口。
-        this.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        else {
+            height = h / 2;
+        }
+        setHeight(height);
 
-//        this.setOnDismissListener(new PoponDismissListener());
+        setFocusable(true);
 
-        popupView.setOnTouchListener(new View.OnTouchListener() {
+        setAnimationStyle(R.style.style_pop);
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
+        ColorDrawable dw = new ColorDrawable(0);
 
-//					dismiss();
+        setBackgroundDrawable(new BitmapDrawable());
+        setOutsideTouchable(true);
 
+        setInputMethodMode(1);
+
+        this.popupView.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View v, MotionEvent event)
+            {
                 return false;
             }
         });
-
     }
 
-    @Override
-    public void showAtLocation(View parent, int gravity, int x, int y) {
+    public void showAtLocation(View parent, int gravity, int x, int y)
+    {
         super.showAtLocation(parent, gravity, x, y);
-        backgroundAlpha(0.5f);
+        backgroundAlpha(0.5F);
     }
 
-    @Override
-    public void dismiss() {
+    public void dismiss()
+    {
         super.dismiss();
-        backgroundAlpha(1f);
+        backgroundAlpha(1.0F);
     }
 
-    /**
-     * 设置添加屏幕的背景透明度
-     * @param bgAlpha
-     */
     public void backgroundAlpha(float bgAlpha)
     {
-        WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
+        WindowManager.LayoutParams lp = this.mContext.getWindow().getAttributes();
         lp.alpha = bgAlpha;
-        mContext.getWindow().setAttributes(lp);
+        this.mContext.getWindow().setAttributes(lp);
     }
 
+    public static abstract interface PopupItemListener
+    {
+        public abstract void onClickItemListener(int paramInt, String paramString);
+    }
 
-    class MyAdapter extends BaseAdapter{
+    class MyAdapter
+            extends BaseAdapter
+    {
+        MyAdapter() {}
 
-        @Override
-        public int getCount() {
-            return mData.size();
+        public int getCount()
+        {
+            return CustomPopup.this.mData.size();
         }
 
-        @Override
-        public Object getItem(int position) {
-            return mData.get(position);
+        public Object getItem(int position)
+        {
+            return CustomPopup.this.mData.get(position);
         }
 
-        @Override
-        public long getItemId(int position) {
+        public long getItemId(int position)
+        {
             return position;
         }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
             ViewHolder holder = null;
-
-            if (convertView == null){
-
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.layout_default_popup_item, null);
+            if (convertView == null)
+            {
+                convertView = LayoutInflater.from(CustomPopup.this.mContext).inflate(R.layout.layout_default_popup_item, null);
                 holder = new ViewHolder();
                 convertView.setTag(holder);
 
-                holder.tv_popup_name = convertView.findViewById(R.id.tv_popup_name);
-            }else{
-                holder = (ViewHolder) convertView.getTag();
+                holder.tv_popup_name = ((TextView)convertView.findViewById(R.id.tv_popup_name));
             }
-            if (!TextUtils.isEmpty(textColor)){
-                holder.tv_popup_name.setTextColor(Color.parseColor(textColor));
+            else
+            {
+                holder = (ViewHolder)convertView.getTag();
             }
-            holder.tv_popup_name.setText(mData.get(position)+"");
+            if (!TextUtils.isEmpty(CustomPopup.this.textColor)) {
+                holder.tv_popup_name.setTextColor(Color.parseColor(CustomPopup.this.textColor));
+            }
+            holder.tv_popup_name.setText((String)CustomPopup.this.mData.get(position) + "");
             return convertView;
         }
 
-        class ViewHolder{
-
+        class ViewHolder
+        {
             TextView tv_popup_name;
+
+            ViewHolder() {}
         }
     }
 
-
-    /**
-     * 设置popup显示内容的颜色
-     * @param color  默认#000000
-     */
-    public void setTextColor(String color){
+    public void setTextColor(String color)
+    {
         this.textColor = color;
     }
-
-
-    public interface PopupItemListener {
-
-        void onClickItemListener(int position, String result);
-    }
-
 }

@@ -23,13 +23,14 @@ public class DBHelper extends SQLiteOpenHelper{
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
-    private static final String DATABASE_PATH = "/data/data/com.example.wsq.androidutils/databases/";
+    private static  String DATABASE_PATH = "";
     private static final String DATABASE_NAME = "address.db";
     private static final int DATABASE_VERSION = 1;
 
-    public DBHelper(Context context) {
+    public DBHelper(Context context, String pkg) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.mContext = context;
+        this.DATABASE_PATH = "/data/data/"+pkg+"/databases/";
     }
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,

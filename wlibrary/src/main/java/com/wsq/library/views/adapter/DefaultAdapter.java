@@ -9,11 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wlibrary.R;
-import com.orhanobut.logger.Logger;
 import com.wsq.library.listener.OnRecyclerViewItemClickListener;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wsq on 2018/1/24.
@@ -40,7 +38,6 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.ViewHole
 
     @Override
     public void onBindViewHolder(ViewHoler holder, int position) {
-
         holder.tv_content.setText(mData.get(position));
     }
 

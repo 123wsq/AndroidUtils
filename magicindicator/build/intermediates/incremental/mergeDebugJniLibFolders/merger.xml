@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="/Users/wsq/Documents/android/code/studio/AndroidUtils/magicindicator/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/wsq/Documents/android/code/studio/AndroidUtils/magicindicator/src/debug/jniLibs"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="E:\workspace\AndroidUtils\magicindicator\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\workspace\AndroidUtils\magicindicator\src\debug\jniLibs"/></dataSet></merger>
+>>>>>>> a9632c26cb0643e8a9ae983e83b7a597be3fcf14

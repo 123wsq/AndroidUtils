@@ -18,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
@@ -1081,4 +1082,6 @@ public class AppManager {
 		}
 		return size;
 	}
+
+
 }

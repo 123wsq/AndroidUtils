@@ -39,7 +39,6 @@
     <dimen name="default_image_size_3">70dp</dimen>
     <dimen name="default_image_size_4">60dp</dimen>
 
-    <dimen name="default_line_height_1">1dp</dimen>
 
 
 </resources>

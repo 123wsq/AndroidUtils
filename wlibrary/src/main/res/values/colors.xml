@@ -6,15 +6,15 @@
     <color name="default_color_font">@color/black</color>
     <color name="red">#FF0000</color>
 
-    <color name="default_backgroud_color">#F2F2F2</color>
+    <color name="default_backgroud_color">#EEEEEE</color>
     <color name="default_btn_color">#0AC8CF</color>
     <color name="color_disable_btn">#E4E4E4</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_gray">#A9A9A9</color>
-    <color name="line_color">#bdbdbd</color>
     <color name="default_color">#555555</color>
     <color name="cancel_popup_color">#3F51B5</color>
 
     <color name="transparent">#00000000</color>
+    <color name="line_color_s">#22000000</color>
 
 </resources>

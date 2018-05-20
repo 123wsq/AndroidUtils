@@ -20,9 +20,9 @@ import java.util.List;
 public class CityDao {
     private DBHelper myDbHelper;
 
-    public CityDao(Context context){
+    public CityDao(Context context, String pkg){
 
-        myDbHelper = new DBHelper(context);
+        myDbHelper = new DBHelper(context, pkg);
         try {
             myDbHelper.createDataBase();
             myDbHelper.openDataBase();

@@ -29,4 +29,8 @@ public interface DefaultModelInter {
     void showValidateData(Callback<List<String>> callback);
 
     void showDesignPatternData(Callback<List<String>> callback);
+
+    void showUtilsClass(Callback<List<String>> callback);
+
+    void showAppManagerValidate(Callback<List<String>> callback);
 }

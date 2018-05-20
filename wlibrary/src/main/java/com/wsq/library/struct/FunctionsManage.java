@@ -122,6 +122,38 @@ public  class FunctionsManage {
         }
     }
 
+    /**
+     * 执行只有参数的接口 参数可以是一个数组
+     * @param functionName
+     */
+    public <Param> void invokeFunction(String functionName, Param...param){
+
+        if (TextUtils.isEmpty(functionName)){
+            try {
+                throw  new WException(ErrorCode.EX_F0002.getCode(), ErrorCode.EX_F0002.getMsg()+" : "+functionName);
+            } catch (WException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        if (mFunctionWithParamOnly != null){
+
+            FunctionWithParamOnly f = mFunctionWithParamOnly.get(functionName);
+            if (f != null){
+                if (param != null){
+                    f.function(param);
+                }
+
+            }
+        }else {
+            try {
+                throw new WException(ErrorCode.EX_F0001.getCode(), ErrorCode.EX_F0001.getMsg()+": "+functionName);
+            } catch (WException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     /**
      * 添加一个只有返回值的接口
@@ -185,7 +217,41 @@ public  class FunctionsManage {
      * 执行有参有返回值的接口
      * @param functionName
      */
-    public <Result, Param> Result invokeFunction(String functionName, Param param,  Class<Result> result){
+    public <Result, Param> Result invokeFunction(String functionName,  Class<Result> result, Param param){
+
+        if (TextUtils.isEmpty(functionName)){
+            try {
+                throw  new WException(ErrorCode.EX_F0002.getCode(), ErrorCode.EX_F0002.getMsg()+" : "+functionName);
+            } catch (WException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        if (mFunctionWithParamOnly != null){
+
+            FunctionWithParamAndResult f = mFunctionWithParamAndResult.get(functionName);
+            if (f != null){
+                if (result != null){
+                    return result.cast(f.function(param));
+                }else {
+                    return (Result) f.function(param);
+                }
+            }else {
+                try {
+                    throw new WException(ErrorCode.EX_F0001.getCode(), ErrorCode.EX_F0001.getMsg()+": "+functionName);
+                } catch (WException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 执行有参有返回值的接口  参数可以是任意类型 包含数组
+     * @param functionName
+     */
+    public <Result, Param> Result invokeFunction(String functionName, Class<Result> result, Param...param){
 
         if (TextUtils.isEmpty(functionName)){
             try {

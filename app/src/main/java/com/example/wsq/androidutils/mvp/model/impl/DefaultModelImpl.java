@@ -18,7 +18,12 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("水印");
         list.add("索引");
         list.add("城市");
+<<<<<<< HEAD
         list.add("水纹");
+=======
+        list.add("Utils验证");
+        list.add("万能接口");
+>>>>>>> a9632c26cb0643e8a9ae983e83b7a597be3fcf14
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -47,6 +52,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("刷新");
         list.add("自定义控件");
         list.add("Canvas Bitmap 交集");
+        list.add("PopupWindow");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -55,9 +61,13 @@ public class DefaultModelImpl implements DefaultModelInter {
     public void showDialogData(Callback<List<String>> callback) {
         List<String> list = new ArrayList<>();
         list.add("单个按钮");
-        list.add("两个按钮");
         list.add("求返回值");
-        list.add("变换颜色");
+        list.add("两个按钮");
+        list.add("两返回值");
+        list.add("标题颜色");
+        list.add("内容颜色");
+        list.add("按钮颜色");
+        list.add("按钮背景色");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -118,6 +128,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("身份证号码");
         list.add("银行卡号");
         list.add("邮箱");
+        list.add("权限");
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -149,6 +160,87 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("策略模式");
         list.add("命令模式");
         list.add("模板模式");
+        callback.onSuccess(list);
+        callback.onComplete();
+    }
+
+    @Override
+    public void showUtilsClass(Callback<List<String>> callback) {
+        List<String> list = new ArrayList<>();
+        list.add("金额");
+        list.add("app");
+        list.add("银行卡");
+        list.add("状态栏");
+        list.add("缓存");
+        list.add("转换");
+        list.add("单位转换");
+        list.add("设备信息");
+        list.add("编码");
+        list.add("加密");
+        list.add("文件流");
+        list.add("文件大小");
+        list.add("文件");
+        list.add("身份证");
+        list.add("image");
+        list.add("Intent");
+        list.add("键盘");
+        list.add("网络");
+        list.add("对象");
+        list.add("参数验证");
+        list.add("strFormat Map");
+        list.add("权限");
+        list.add("手机");
+        list.add("进程");
+        list.add("反射");
+        list.add("正则");
+        list.add("屏幕大小");
+        list.add("SD卡");
+        list.add("服务");
+        list.add("shell");
+        list.add("字符串");
+        list.add("时间");
+        list.add("Unicode");
+        list.add("Shared");
+        list.add("zip");
+        callback.onSuccess(list);
+        callback.onComplete();
+    }
+
+    @Override
+    public void showAppManagerValidate(Callback<List<String>> callback) {
+        List<String> list = new ArrayList<>();
+        list.add("应用版本号");
+        list.add("应用名称");
+        list.add("启动activity");
+        list.add("启动Fragment");
+        list.add("读取 assets 文件内容");
+        list.add("判断 App 是否安装");
+        list.add("安装 App(支持 8.0)");
+        list.add("静默安装 App");
+        list.add("卸载 App");
+        list.add("静默卸载 App");
+        list.add("App 是否有 root 权限");
+        list.add("打开 App");
+        list.add("关闭 App");
+        list.add("获取 App 包名");
+        list.add("获取 App 具体设置");
+        list.add(" 获取 App 名称");
+        list.add("获取 App 图标");
+        list.add(" 获取 App 路径");
+        list.add("获取 App 版本号");
+        list.add("获取 App 版本码");
+        list.add("判断 App 是否是系统应用");
+        list.add("判断 App 是否是 Debug 版本");
+        list.add("获取 App 签名");
+        list.add("获取应用签名的的 SHA1 值");
+        list.add("判断 App 是否处于前台");
+        list.add("获取 App 信息");
+        list.add("获取所有已安装 App 信息");
+        list.add("清除 App 所有数据");
+        list.add("获取缓存大小");
+        list.add("清空所有缓存");
+        list.add("获取文件");
+
         callback.onSuccess(list);
         callback.onComplete();
     }

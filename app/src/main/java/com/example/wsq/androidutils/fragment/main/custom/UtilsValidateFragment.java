@@ -1,7 +1,5 @@
 package com.example.wsq.androidutils.fragment.main.custom;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,17 +10,10 @@ import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
-import com.orhanobut.logger.Logger;
 import com.wsq.library.listener.OnRecyclerViewItemClickListener;
-import com.wsq.library.tools.DialogTools;
 import com.wsq.library.tools.RecyclerViewDivider;
-import com.wsq.library.tools.ToastUtils;
-import com.wsq.library.utils.DataFormat;
 import com.wsq.library.utils.DensityUtil;
-
 import com.wsq.library.views.adapter.DefaultAdapter;
-import com.wsq.library.views.alertdialog.CustomDefaultDialog;
-import com.wsq.library.views.alertdialog.OnDialogClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,15 +25,13 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/3/13 0013.
  */
 
-public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
+public class UtilsValidateFragment extends BaseFragment<DefaultView, DefaultPresenter<DefaultView>> implements DefaultView{
 
-    public static final String TAG = DataValidateFragment.class.getName();
+    public static final String TAG = UtilsValidateFragment.class.getName();
     public static  String INTERFACE_NPNR = TAG + _INTERFACE_NPNR;
     public static final String INTERFACE_WITHP = TAG + _INTERFACE_WITHP;
     public static final String INTERFACE_WITHR = TAG + _INTERFACE_NPNR;
     public static final String INTERFACE_WITHPR = TAG +_INTERFACE_WITHPR;
-
-    private final int PER_CAMERA = 3;
 
     @BindView(R.id.rv_RecyclerView)
     RecyclerView rv_RecyclerView;
@@ -66,17 +55,17 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
     @Override
     protected void initView() {
         mData = new ArrayList<>();
-        tv_title.setText("数据验证");
+        tv_title.setText("Utils 验证");
 
         rv_RecyclerView.addItemDecoration(new RecyclerViewDivider(
-                getActivity(), LinearLayoutManager.HORIZONTAL, DensityUtil.dp2px(getActivity(), 5),
+                getActivity(), LinearLayoutManager.HORIZONTAL, DensityUtil.dp2px(getActivity(), 10),
                 ContextCompat.getColor(getActivity(), R.color.default_backgroud_color)));
         rv_RecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_RecyclerView.setHasFixedSize(true);
 
         mAdapter = new DefaultAdapter(getActivity(), mData, mListener);
         rv_RecyclerView.setAdapter(mAdapter);
-        ipresenter.showValidateData();
+        ipresenter.showUtilsClassData();
 
     }
     @OnClick(R.id.ll_back)
@@ -100,29 +89,7 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
         @Override
         public void onRecyclerItemClickListener(View view, int position) {
 
-            switch (position){
-                case 0:
-                    DialogTools.showDialog(getContext(), "确定",  "数字验证", "", false,
-                            new OnDialogClickListener() {
-                        @Override
-                        public void onClick(CustomDefaultDialog dialog, String result, int requestCode) {
-
-                            Logger.d(DataFormat.isNumber(result.trim()));
-                            ToastUtils.onToast((DataFormat.isNumber(result.trim()) ? "是" : "不是")+"数字");
-                            dialog.dismiss();
-                        }
-                    });
-                    break;
-                case 1:
-
-
-                    break;
-                case 4:
-                    break;
-                default:
-                    ToastUtils.onToast("完善中。。。");
-                    break;
-            }
+            mFunctionsManage.invokeFunction(INTERFACE_WITHP, position);
         }
 
         @Override
@@ -130,5 +97,4 @@ public class DataValidateFragment extends BaseFragment<DefaultView, DefaultPrese
 
         }
     };
-
 }

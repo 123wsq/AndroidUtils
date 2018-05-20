@@ -8,6 +8,7 @@ import android.support.multidex.MultiDex;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.wsq.library.tools.ToastUtils;
+import com.wsq.library.utils.Utils;
 
 import org.litepal.LitePalApplication;
 
@@ -23,6 +24,7 @@ public class BaseApplication extends LitePalApplication {
     public void onCreate() {
         super.onCreate();
         ToastUtils.getInstance(this);
+        Utils.init(this);
     }
 
     @Override

@@ -37,4 +37,11 @@
         android:layout_marginTop="@dimen/default_margin_3"
         />
 
+    <TextView
+        android:id="@+id/tv_interface_wp"
+        style="@style/default_button"
+        android:text="测试接口_"
+        android:textColor="@color/color_white"
+        android:layout_marginTop="@dimen/default_margin_3"
+        />
 </LinearLayout>

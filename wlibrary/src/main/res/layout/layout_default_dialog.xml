@@ -1,127 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<LinearLayout
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_gravity="center"
+    android:minWidth="200dp"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
 
-    <LinearLayout
-        android:id="@+id/layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:minWidth="200dp"
-        android:orientation="vertical"
-        android:scrollbars="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/default_height_3">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="提示"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/default_text_size_3" />
-            <ImageView
-                android:id="@+id/iv_close"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@drawable/image_close"
-                android:layout_alignParentRight="true"
-                android:layout_margin="@dimen/default_radius_3"
-                />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#D1D1D1"
-            android:layout_marginLeft="@dimen/default_margin_3"
-            android:layout_marginRight="@dimen/default_margin_3"
-            />
-
+        android:layout_height="@dimen/default_height_3">
 
         <TextView
-            android:id="@+id/dialog_message"
+            android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin_1"
-            android:layout_marginRight="@dimen/default_margin_1"
-            android:gravity="center"
-            android:minHeight="@dimen/default_height_1"
-            android:text="nnnnn"
-            android:textSize="@dimen/default_text_size_3"
-            android:visibility="gone" />
-
-
-        <EditText
-            android:id="@+id/tv_inputMessage"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/shape_text_stroken"
-            android:padding="@dimen/default_radius_3"
-            android:textColorHint="@color/color_gray"
-            android:textSize="@dimen/default_text_size_3"
-            android:layout_marginLeft="@dimen/default_margin_1"
-            android:layout_marginRight="@dimen/default_margin_1"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
-            android:text="11"
-            android:gravity="left"
+            android:gravity="center"
+            android:text="提示"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/default_text_size_3" />
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/image_close"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/default_radius_3"
             />
+    </RelativeLayout>
+
+    <View
+        style="@style/common_line_horizontal_style"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
 
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_1"
+        android:layout_marginRight="@dimen/default_margin_1"
+        android:gravity="center"
+        android:minHeight="@dimen/default_height_1"
+        android:text="nnnnn"
+        android:textSize="@dimen/default_text_size_3"
+        android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/dialog_btn_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/default_height_3"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/default_margin_4"
-            android:visibility="visible">
 
-            <View
-                style="@style/common_line_horizontal_style"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
+    <EditText
+        android:id="@+id/tv_inputMessage"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_text_stroken"
+        android:padding="@dimen/default_radius_3"
+        android:textColorHint="@color/color_gray"
+        android:textSize="@dimen/default_text_size_3"
+        android:layout_marginLeft="@dimen/default_margin_1"
+        android:layout_marginRight="@dimen/default_margin_1"
+        android:layout_marginTop="@dimen/default_margin_4"
+        android:layout_marginBottom="@dimen/default_margin_4"
+        android:visibility="visible"
+        android:text="11"
+        android:gravity="left"
+        />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+</LinearLayout>
+<View
+    style="@style/common_line_horizontal_style"
+    android:layout_width="match_parent"
+    android:layout_height="1dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/default_height_3"
+    android:orientation="horizontal"
+    android:background="@drawable/shape_dialog_buttom"
+    >
 
-                <Button
-                    android:id="@+id/dialog_ok"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_dialog_left"
-                    android:text="确定"
-                    android:textColor="@color/default_color"
-                    android:textSize="@dimen/default_text_size_3" />
+    <Button
+        android:id="@+id/dialog_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/shape_dialog_left"
+        android:text="确定"
+        android:textColor="@color/default_color"
+        android:textSize="@dimen/default_text_size_3"
 
-                <View
-                    android:id="@+id/dialig_view"
-                    style="@style/common_line_horizontal_style"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent" />
+        />
 
-                <Button
-                    android:id="@+id/dialog_cancel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_dialog_right"
-                    android:text="取消"
-                    android:textColor="@color/default_color"
-                    android:textSize="@dimen/default_text_size_3" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    <View
+        android:id="@+id/dialig_view"
+        style="@style/common_line_horizontal_style"
+        android:layout_width="1dp"
+        android:layout_height="match_parent" />
 
+    <Button
+        android:id="@+id/dialog_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="取消"
+        android:background="@drawable/shape_dialog_right"
+        android:textColor="@color/default_color"
+        android:textSize="@dimen/default_text_size_3"
+        />
+</LinearLayout>
 </LinearLayout>
