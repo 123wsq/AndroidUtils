@@ -148,14 +148,14 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         onEnter(new CityFragment(), CityFragment.TAG, true);
                         break;
                     case 4:
-<<<<<<< HEAD
-                        onEnter(new WaterWaveFragment(), WaterWaveFragment.TAG, true);
-=======
+
                         onEnter(new UtilsValidateFragment(), UtilsValidateFragment.TAG, true);
                         break;
                     case 5:
                         onEnter(new TabFragment(), TabFragment.TAG, true);
->>>>>>> a9632c26cb0643e8a9ae983e83b7a597be3fcf14
+                        break;
+                    case 6:
+                        onEnter(new WaterWaveFragment(), WaterWaveFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");

@@ -18,12 +18,9 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("水印");
         list.add("索引");
         list.add("城市");
-<<<<<<< HEAD
-        list.add("水纹");
-=======
         list.add("Utils验证");
         list.add("万能接口");
->>>>>>> a9632c26cb0643e8a9ae983e83b7a597be3fcf14
+        list.add("水纹");
         callback.onSuccess(list);
         callback.onComplete();
     }

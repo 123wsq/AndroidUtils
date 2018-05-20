@@ -44,7 +44,7 @@ public class WaterWaveFragment extends BaseFragment{
          */
 //        tv_multiwave.setWaves("0,0,1,1,25\n90,0,1,1,25");
         String[] waves = "70,25,1.4,1.4,-26\n100,5,1.4,1.2,15\n420,0,1.15,1,-10\n520,10,1.7,1.5,20\n220,0,1,1,-15".split("\n");
-        tv_multiwave.setWaves("420,0,1.15,1,-10\n520,10,1.7,1.5,20");
+        tv_multiwave.setWaves("70,25,1.4,1.4,-26\n100,5,1.4,1.2,15\n420,0,1.15,1,-10\n520,10,1.7,1.5,20\n220,0,1,1,-15");
         tv_multiwave.start();
     }
 
