@@ -3,6 +3,7 @@ package com.example.wsq.androidutils.fragment.main.custom;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.wsq.androidutils.R;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/3/14 0014.
@@ -81,6 +83,16 @@ public class RefreshFragment extends BaseFragment<DefaultView, DefaultPresenter<
 
         onRefresh();
     }
+
+    @OnClick(R.id.ll_back)
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.ll_back:
+                mFunctionsManage.invokeFunction(INTERFACE_BACK);
+                break;
+        }
+    }
+
 
     public void onRefresh(){
         refreshLayout.setRefreshHeader(new BezierCircleHeader(getContext()));

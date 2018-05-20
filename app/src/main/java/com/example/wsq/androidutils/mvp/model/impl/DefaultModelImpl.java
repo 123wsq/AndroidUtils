@@ -18,6 +18,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("水印");
         list.add("索引");
         list.add("城市");
+        list.add("水纹");
         callback.onSuccess(list);
         callback.onComplete();
     }

@@ -31,6 +31,7 @@ import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ReflectFragment;
 import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
+import com.example.wsq.androidutils.fragment.main.custom.WaterWaveFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
 import com.example.wsq.androidutils.fragment.main.tab.ThreeTabFragment;
 import com.example.wsq.androidutils.fragment.main.tab.TwoTabFragment;
@@ -134,6 +135,9 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 3:
                         onEnter(new CityFragment(), CityFragment.TAG, true);
+                        break;
+                    case 4:
+                        onEnter(new WaterWaveFragment(), WaterWaveFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");
