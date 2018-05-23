@@ -7,6 +7,8 @@ import com.example.wsq.androidutils.mvp.model.inter.CityModelinter;
 import com.example.wsq.androidutils.mvp.model.inter.DefaultModelInter;
 import com.example.wsq.androidutils.mvp.view.BaseView;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
+import com.example.wsq.androidutils.mvp.view.WaveIndexView;
+import com.wsq.library.bean.CityInfoBean;
 import com.wsq.library.tools.ToastUtils;
 
 import java.util.List;
@@ -369,6 +371,35 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
             defaultModel.showAppManagerValidate(new Callback<List<String>>() {
                 @Override
                 public void onSuccess(List<String> data) {
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    ToastUtils.onToast(msg);
+                }
+
+                @Override
+
+                public void onError() {
+                    ToastUtils.onToast("加载错误");
+                }
+
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+    public void showIndexData(){
+        final WaveIndexView view = (WaveIndexView) getView();
+        if (view != null){
+            defaultModel.onShowIndexBar(new Callback<List<CityInfoBean>>() {
+                @Override
+                public void onSuccess(List<CityInfoBean> data) {
                     view.showData(data);
                 }
 

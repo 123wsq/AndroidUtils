@@ -2,15 +2,28 @@ package com.example.wsq.androidutils.fragment.main.custom;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
+import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
+import com.example.wsq.androidutils.mvp.view.DefaultView;
+import com.example.wsq.androidutils.mvp.view.WaveIndexView;
 import com.orhanobut.logger.Logger;
+import com.wsq.library.bean.CityInfoBean;
+import com.wsq.library.utils.PinyinComparator;
+import com.wsq.library.views.index.SortAdapter;
+import com.wsq.library.views.index.TitleItemDecoration;
+import com.wsq.library.views.index.WaveSideBar;
 import com.wsq.library.views.view.IndexView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +34,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/2/9 0009.
  */
 
-public class IndexFragment extends BaseFragment {
+public class IndexFragment extends BaseFragment<WaveIndexView, DefaultPresenter<WaveIndexView>> implements WaveIndexView, WaveSideBar.OnTouchLetterChangeListener {
 
     public static final String TAG = IndexFragment.class.getName();
     public static final String INTERFACE_NPNR = TAG+"NPNR";
@@ -29,15 +42,23 @@ public class IndexFragment extends BaseFragment {
     public static final String INTERFACE_WITHR = TAG+"withResult";
     public static final String INTERFACE_WITHPR = TAG+"withParamResult";
 
-    @BindView(R.id.index_View)
-    IndexView index_View;
-    @BindView(R.id.tv_index)
-    TextView tv_index;
+    @BindView(R.id.rv_RecyclerView) RecyclerView rv_RecyclerView;
+    @BindView(R.id.ws_sideBar) WaveSideBar ws_sideBar;
     @BindView(R.id.tv_title) TextView tv_title;
 
+    private SortAdapter mAdapter;
+    private List<CityInfoBean> mData;
+    private TitleItemDecoration mDecoration;
+    private LinearLayoutManager manager;
+
+    /**
+     * 根据拼音来排列RecyclerView里面的数据类
+     */
+    private PinyinComparator mComparator;
+
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected DefaultPresenter<WaveIndexView> createPresenter() {
+        return new DefaultPresenter<>();
     }
 
     @Override
@@ -49,15 +70,29 @@ public class IndexFragment extends BaseFragment {
     protected void initView() {
         tv_title.setText("索引");
 
-        index_View.setOnTouchingLetterChangedListener(new IndexView.OnTouchingLetterChangedListener() {
-            @Override
-            public void onTouchingLetterChanged(String s) {
-                Message msg = new Message();
-                msg.obj = s;
-                handler.sendMessage(msg);
-            }
-        });
+        ws_sideBar.setOnTouchLetterChangeListener(this);
 
+        onInitRecyclerView();
+    }
+
+    private void onInitRecyclerView(){
+
+        mData =new ArrayList<>();
+
+        mComparator = new PinyinComparator();
+
+        //RecyclerView设置manager
+        manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rv_RecyclerView.setLayoutManager(manager);
+        mAdapter = new SortAdapter(getActivity(), mData);
+        rv_RecyclerView.setAdapter(mAdapter);
+        mDecoration = new TitleItemDecoration(getActivity(), mData);
+        //如果add两个，那么按照先后顺序，依次渲染。
+        rv_RecyclerView.addItemDecoration(mDecoration);
+        rv_RecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
+        ipresenter.showIndexData();
     }
 
     @OnClick(R.id.ll_back)
@@ -68,11 +103,25 @@ public class IndexFragment extends BaseFragment {
                 break;
         }
     }
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            tv_index.setText(msg.obj+"");
+
+
+    @Override
+    public void onLetterChange(String letter) {
+        //该字母首次出现的位置
+        int position = mAdapter.getPositionForSection(letter.charAt(0));
+        if (position != -1) {
+            manager.scrollToPositionWithOffset(position, 0);
         }
-    };
+    }
+
+    @Override
+    public void showData(List<CityInfoBean> data) {
+
+        mData.addAll(data);
+        // 根据a-z进行排序源数据
+        Collections.sort(mData, mComparator);
+
+        mAdapter.notifyDataSetChanged();
+
+    }
 }

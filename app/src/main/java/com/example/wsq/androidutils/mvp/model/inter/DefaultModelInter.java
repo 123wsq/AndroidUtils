@@ -1,6 +1,7 @@
 package com.example.wsq.androidutils.mvp.model.inter;
 
 import com.example.wsq.androidutils.mvp.callback.Callback;
+import com.wsq.library.bean.CityInfoBean;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface DefaultModelInter {
     void showUtilsClass(Callback<List<String>> callback);
 
     void showAppManagerValidate(Callback<List<String>> callback);
+
+    void onShowIndexBar(Callback<List<CityInfoBean>> callback);
 }

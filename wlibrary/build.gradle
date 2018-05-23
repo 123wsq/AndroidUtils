@@ -36,9 +36,13 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.android.support:design:27.0.2'
-    compile 'com.youth.banner:banner:1.4.10'  //最新版本
-    compile 'org.litepal.android:core:1.5.0' //sqlite数据库
+    compile 'com.youth.banner:banner:1.4.10'
+    //最新版本
+    compile 'org.litepal.android:core:1.5.0'
+    //sqlite数据库
     //刷新
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-5'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-5'//没有使用特殊Header，可以不加这行
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-5'
+    //没有使用特殊Header，可以不加这行
+    implementation files('libs/pinyin4j-2.5.0.jar')
 }

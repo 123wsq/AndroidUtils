@@ -2,9 +2,12 @@ package com.example.wsq.androidutils.mvp.model.impl;
 
 import com.example.wsq.androidutils.mvp.callback.Callback;
 import com.example.wsq.androidutils.mvp.model.inter.DefaultModelInter;
+import com.wsq.library.bean.CityInfoBean;
+import com.wsq.library.utils.PinyinUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/3/9 0009.
@@ -241,4 +244,36 @@ public class DefaultModelImpl implements DefaultModelInter {
         callback.onSuccess(list);
         callback.onComplete();
     }
+
+    @Override
+    public void onShowIndexBar(Callback<List<CityInfoBean>> callback) {
+        String[] str = {"裘","豆","李","莎","动","力","火","车","伍","佰","蔡","依","林","戚","薇","齐","期","浩","二","天","大","圣","品","冠","吴","克","群","贲","素","琴","缪","丝","成","龙","汪","峰"};
+        List<CityInfoBean> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Random random = new Random();
+            int index  = random.nextInt(str.length);
+            int index2 = random.nextInt(str.length);
+            int index3 = random.nextInt(str.length);
+            CityInfoBean bean = new CityInfoBean();
+            String city_name = str[index] + str[index2] + str[index3];
+            bean.setCity_name(city_name);
+            //汉字转换成拼音
+            String pinyin = PinyinUtils.getPingYin(city_name);
+
+            String sortString = pinyin.substring(0, 1).toUpperCase();
+
+            // 正则表达式，判断首字母是否是英文字母
+            if (sortString.matches("[A-Z]")) {
+                bean.setCity_logogram(sortString.toUpperCase());
+            } else {
+                bean.setCity_logogram("#");
+            }
+
+            list.add(bean);
+        }
+        callback.onSuccess(list);
+        callback.onComplete();
+    }
+
+
 }
