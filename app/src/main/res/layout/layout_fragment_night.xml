@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/layout_public_titlebar"></include>
+
+
+    <TextView
+        android:id="@+id/tv_light"
+        style="@style/default_button"
+        android:text="白天模式"
+        />
+
+    <TextView
+        android:id="@+id/tv_night"
+        style="@style/default_button"
+        android:text="夜间模式"
+        />
+</LinearLayout>

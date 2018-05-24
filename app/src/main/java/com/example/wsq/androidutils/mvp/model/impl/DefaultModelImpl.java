@@ -24,6 +24,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("Utils验证");
         list.add("万能接口");
         list.add("水纹");
+        list.add("夜间模式切换");
         callback.onSuccess(list);
         callback.onComplete();
     }
