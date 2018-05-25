@@ -12,18 +12,24 @@ import com.example.wlibrary.R;
 public class LoadingDialog extends Dialog {
 	private String str="加载中...";
 	SysLoading loadingView;
-	public LoadingDialog(Context context, int theme) {
-		super(context, R.style.FullScreenDialogAct);
-		init(context);
-	}
+	private int animationId;
+
 
 	public LoadingDialog(Context context) {
 		super(context, R.style.FullScreenDialogAct);
 		init(context);
 	}
+
+	public LoadingDialog(Context context, int resId) {
+		super(context, R.style.FullScreenDialogAct);
+		this.animationId = resId;
+		init(context);
+	}
 	private void init(Context context){
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		loadingView  = new SysLoading(context);
+
+		loadingView.setAnimationId(animationId);
 		setContentView(loadingView);
 
 	}

@@ -33,6 +33,8 @@ public class SysLoading  extends LinearLayout {
     //加载时文本
     private String loadingText;
 
+    private int resId = R.drawable.sys_loading;
+
     public SysLoading(Context context) {
         super(context);
         initView(context);
@@ -85,7 +87,7 @@ public class SysLoading  extends LinearLayout {
         //设置失败视图隐藏
         sys_loading_dialog_fail.setVisibility(View.GONE);
         //获取动画
-        sys_loading_dialog_img.setBackgroundResource(R.drawable.sys_loading);
+        sys_loading_dialog_img.setBackgroundResource(resId);
         //通过ImageView拿到AnimationDrawable
         mAnimation = (AnimationDrawable) sys_loading_dialog_img.getBackground();
         //为了防止只显示第一帧
@@ -113,6 +115,11 @@ public class SysLoading  extends LinearLayout {
         sys_loading_dialog_img.setVisibility(View.GONE);
         //设置加载时文本隐藏
         sys_loading_dialog_tv.setVisibility(View.GONE);
+    }
+
+
+    public void setAnimationId(int resId){
+        this.resId = resId;
     }
 
 
