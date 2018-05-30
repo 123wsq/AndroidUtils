@@ -4,5 +4,5 @@ import com.wsq.library.bean.CityInfoBean;
 
 public interface OnCityResultCallBack {
 
-    void onCallBack(CityInfoBean city);
+    void onCallBack(String province, String city, String county);
 }

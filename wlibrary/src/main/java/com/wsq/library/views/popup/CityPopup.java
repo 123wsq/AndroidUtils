@@ -13,7 +13,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
-import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.example.wlibrary.R;
@@ -172,6 +171,7 @@ public class CityPopup extends PopupWindow{
                     return;
                 }
                 curCounty = mListCounty.get(index);
+                tv_popup_title.setText(curProvince.getName()+"-"+curCity.getName()+"-"+curCounty.getName());
             }
         });
 
@@ -179,7 +179,7 @@ public class CityPopup extends PopupWindow{
             @Override
             public void onClick(View v) {
                 if (mCallBack!= null)
-                mCallBack.onCallBack(curCity);
+                mCallBack.onCallBack(curProvince.getName(), curCity.getName(), curCounty.getName());
                 dismiss();
             }
         });
@@ -258,7 +258,11 @@ public class CityPopup extends PopupWindow{
                 mListCounty.add(mData.get(i));
             }
         }
+
         wv_county.setAdapter( new CityWheelAdapter(mListCounty));
+
+        curCounty = mListCounty.get(0);
+        tv_popup_title.setText(curProvince.getName()+"-"+curCity.getName()+"-"+curCounty.getName());
     }
 
 

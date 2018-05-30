@@ -110,8 +110,9 @@ public class CityFragment extends BaseFragment<CityView, CityPresenter<CityView>
 
     private void onInitPopup(){
         popup = new CityPopup(getActivity(), new OnCityResultCallBack() {
+
             @Override
-            public void onCallBack(CityInfoBean city) {
+            public void onCallBack(String province, String city, String county) {
 
             }
         });
