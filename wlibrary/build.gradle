@@ -45,4 +45,6 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-5'
     //没有使用特殊Header，可以不加这行
     implementation files('libs/pinyin4j-2.5.0.jar')
+//    implementation 'com.wx.wheelview:wheelview:1.3.3'
+    implementation 'com.contrarywind:Android-PickerView:4.1.3'
 }

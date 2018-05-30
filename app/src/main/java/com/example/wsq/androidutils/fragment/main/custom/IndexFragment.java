@@ -1,7 +1,5 @@
 package com.example.wsq.androidutils.fragment.main.custom;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,22 +8,16 @@ import android.widget.TextView;
 
 import com.example.wsq.androidutils.R;
 import com.example.wsq.androidutils.base.BaseFragment;
-import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
 import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
-import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.example.wsq.androidutils.mvp.view.WaveIndexView;
-import com.orhanobut.logger.Logger;
 import com.wsq.library.bean.CityInfoBean;
-import com.wsq.library.utils.PinyinComparator;
 import com.wsq.library.views.index.SortAdapter;
 import com.wsq.library.views.index.TitleItemDecoration;
 import com.wsq.library.views.index.WaveSideBar;
-import com.wsq.library.views.view.IndexView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,10 +43,6 @@ public class IndexFragment extends BaseFragment<WaveIndexView, DefaultPresenter<
     private TitleItemDecoration mDecoration;
     private LinearLayoutManager manager;
 
-    /**
-     * 根据拼音来排列RecyclerView里面的数据类
-     */
-    private PinyinComparator mComparator;
 
     @Override
     protected DefaultPresenter<WaveIndexView> createPresenter() {
@@ -79,7 +67,6 @@ public class IndexFragment extends BaseFragment<WaveIndexView, DefaultPresenter<
 
         mData =new ArrayList<>();
 
-        mComparator = new PinyinComparator();
 
         //RecyclerView设置manager
         manager = new LinearLayoutManager(getActivity());
@@ -119,7 +106,6 @@ public class IndexFragment extends BaseFragment<WaveIndexView, DefaultPresenter<
 
         mData.addAll(data);
         // 根据a-z进行排序源数据
-        Collections.sort(mData, mComparator);
 
         mAdapter.notifyDataSetChanged();
 

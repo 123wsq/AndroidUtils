@@ -34,11 +34,7 @@ public class SearchCityAdapter extends RecyclerView.Adapter<SearchCityAdapter.Vi
     public void onBindViewHolder(SearchCityAdapter.ViewHolder holder, int position) {
 
         CityInfoBean bean = mData.get(position);
-        if (bean.getSearchMatch() == 1){
-            holder.tv_city_name.setText(bean.getCity_name()+"\t•\t"+bean.getProvince_name());
-        }else {
-            holder.tv_city_name.setText(bean.getCounty_name()+"\t•\t"+bean.getCity_name());
-        }
+
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CityModelImpl implements CityModelinter{
     @Override
     public void loadAllCity(Context context, Callback<List<CityInfoBean>> callback) {
         CityDao cityDao = new CityDao(context, AppManager.getAppPackageName());
-        List<CityInfoBean> list = cityDao.getAllCity();
+        List<CityInfoBean> list = cityDao.getData(-1);
         callback.onSuccess(list);
         callback.onComplete();
     }
@@ -31,7 +31,7 @@ public class CityModelImpl implements CityModelinter{
     @Override
     public void searchCity(Context context, String like, Callback<List<CityInfoBean>> callback) {
         CityDao cityDao = new CityDao(context, AppManager.getAppPackageName());
-        List<CityInfoBean> list = cityDao.selectLike(like);
+        List<CityInfoBean> list = cityDao.getData(-1);
         callback.onSuccess(list);
         callback.onComplete();
     }

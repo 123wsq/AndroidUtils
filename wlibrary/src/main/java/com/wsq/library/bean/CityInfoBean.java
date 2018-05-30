@@ -1,165 +1,110 @@
 package com.wsq.library.bean;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/3/7 0007.
  */
 
 public class CityInfoBean {
 
-    /**
-     * 省份名称
-     */
-    String province_name;
+    public static final String TABLE_NAME           = "tp_region";
 
-    /**
-     * 省份拼音
-     */
-    String province_spell;
+    public static final String ID = "id";
 
-    /**
-     * 省份简拼
-     */
-    String province_logogram;
+    public static final String AREA_CODE = "areaCode";
 
-    /**
-     * 省份ID
-     */
-    int province_id;
+    public static final String NAME = "name";
 
-    /**
-     * 城市名称
-     */
-    String city_name;
+    public static final String LEVEL = "level";
 
-    /**
-     * 城市拼音
-     */
-    String city_spell;
+    public static final String CITY_CODE = "cityCode";
 
-    /**
-     * 城市简拼
-     */
-    String  city_logogram;
+    public static final String CENTER = "center";
 
-    /**
-     * 城市ID
-     */
-    int city_id;
-
-    /**
-     * 县，区名称
-     */
-    String county_name;
-
-    /**
-     * 县 区 拼音
-     */
-    String county_spell;
-
-    /**
-     * 县 区简拼
-     */
-    String county_logogram;
-
-    /**
-     * 搜索匹配  1 表示按照城市匹配  2表示按照 县区
-     */
-    int searchMatch;
+    public static final String PARENT_ID = "parent_id";
 
 
-    public String getProvince_name() {
-        return province_name;
+    public  int id;
+
+    public String area_code;
+
+    public String name;
+
+    public int level;
+
+    public String city_code;
+
+    public String center;
+
+    public int parent_id;
+
+    private List<?> list;
+
+    public int getId() {
+        return id;
     }
 
-    public void setProvince_name(String province_name) {
-        this.province_name = province_name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getProvince_spell() {
-        return province_spell;
+    public String getArea_code() {
+        return area_code;
     }
 
-    public void setProvince_spell(String province_spell) {
-        this.province_spell = province_spell;
+    public void setArea_code(String area_code) {
+        this.area_code = area_code;
     }
 
-    public String getProvince_logogram() {
-        return province_logogram;
+    public String getName() {
+        return name;
     }
 
-    public void setProvince_logogram(String province_logogram) {
-        this.province_logogram = province_logogram;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getProvince_id() {
-        return province_id;
+    public int getLevel() {
+        return level;
     }
 
-    public void setProvince_id(int province_id) {
-        this.province_id = province_id;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
-    public String getCity_name() {
-        return city_name;
+    public String getCity_code() {
+        return city_code;
     }
 
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
+    public void setCity_code(String city_code) {
+        this.city_code = city_code;
     }
 
-    public String getCity_spell() {
-        return city_spell;
+    public String getCenter() {
+        return center;
     }
 
-    public void setCity_spell(String city_spell) {
-        this.city_spell = city_spell;
+    public void setCenter(String center) {
+        this.center = center;
     }
 
-    public String getCity_logogram() {
-        return city_logogram;
+    public int getParent_id() {
+        return parent_id;
     }
 
-    public void setCity_logogram(String city_logogram) {
-        this.city_logogram = city_logogram;
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
     }
 
-    public int getCity_id() {
-        return city_id;
+    public List<?> getList() {
+        return list;
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public void setList(List<?> list) {
+        this.list = list;
     }
 
-    public String getCounty_name() {
-        return county_name;
-    }
-
-    public void setCounty_name(String county_name) {
-        this.county_name = county_name;
-    }
-
-    public String getCounty_spell() {
-        return county_spell;
-    }
-
-    public void setCounty_spell(String county_spell) {
-        this.county_spell = county_spell;
-    }
-
-    public String getCounty_logogram() {
-        return county_logogram;
-    }
-
-    public void setCounty_logogram(String county_logogram) {
-        this.county_logogram = county_logogram;
-    }
-
-    public int getSearchMatch() {
-        return searchMatch;
-    }
-
-    public void setSearchMatch(int searchMatch) {
-        this.searchMatch = searchMatch;
+    public CityInfoBean() {
     }
 }

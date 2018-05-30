@@ -55,7 +55,6 @@ dependencies {
     implementation files('libs/umeng-analytics-7.4.4.jar')
     implementation files('libs/umeng-common-1.4.4.jar')
     compile 'io.reactivex:rxjava:1.1.6'
-
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->

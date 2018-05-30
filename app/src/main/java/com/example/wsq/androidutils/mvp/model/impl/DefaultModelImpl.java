@@ -6,7 +6,9 @@ import com.wsq.library.bean.CityInfoBean;
 import com.wsq.library.utils.PinyinUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -17,7 +19,7 @@ public class DefaultModelImpl implements DefaultModelInter {
     @Override
     public void showData(Callback<List<String>> callback) {
         List<String> list = new ArrayList<>();
-        list.add("RecycView");
+        list.add("瀑布流");
         list.add("水印");
         list.add("索引");
         list.add("城市");
@@ -257,23 +259,35 @@ public class DefaultModelImpl implements DefaultModelInter {
             int index3 = random.nextInt(str.length);
             CityInfoBean bean = new CityInfoBean();
             String city_name = str[index] + str[index2] + str[index3];
-            bean.setCity_name(city_name);
             //汉字转换成拼音
             String pinyin = PinyinUtils.getPingYin(city_name);
 
             String sortString = pinyin.substring(0, 1).toUpperCase();
 
-            // 正则表达式，判断首字母是否是英文字母
-            if (sortString.matches("[A-Z]")) {
-                bean.setCity_logogram(sortString.toUpperCase());
-            } else {
-                bean.setCity_logogram("#");
-            }
+
 
             list.add(bean);
         }
         callback.onSuccess(list);
         callback.onComplete();
+    }
+
+    @Override
+    public void onWaterFallData(Callback<List<Map<String, Object>>> callback) {
+
+        List<Map<String, Object>> data = new ArrayList<>();
+
+        for (int i = 0; i < 50; i++) {
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("title","百度图片使用世界前沿的人工智能技术,为用户甄选海量的高清美图,用更流畅、更快捷、更精准的搜索体验,带你去发现多彩的世界。");
+            map.put("url", "http://www.taopic.com/uploads/allimg/140320/235013-14032020515270.jpg");
+            data.add(map);
+        }
+
+        callback.onSuccess(data);
+        callback.onComplete();
+
     }
 
 

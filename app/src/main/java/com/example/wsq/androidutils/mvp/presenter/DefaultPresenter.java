@@ -7,11 +7,13 @@ import com.example.wsq.androidutils.mvp.model.inter.CityModelinter;
 import com.example.wsq.androidutils.mvp.model.inter.DefaultModelInter;
 import com.example.wsq.androidutils.mvp.view.BaseView;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
+import com.example.wsq.androidutils.mvp.view.WaterFallView;
 import com.example.wsq.androidutils.mvp.view.WaveIndexView;
 import com.wsq.library.bean.CityInfoBean;
 import com.wsq.library.tools.ToastUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/3/9 0009.
@@ -414,6 +416,35 @@ public class DefaultPresenter<T extends BaseView> extends BasePresenter<T> {
                     ToastUtils.onToast("加载错误");
                 }
 
+
+                @Override
+                public void onComplete() {
+
+                }
+            });
+        }
+    }
+
+
+    public void onGetWaterFallData(){
+        final WaterFallView view = (WaterFallView) getView();
+        if (view != null){
+            defaultModel.onWaterFallData(new Callback<List<Map<String, Object>>>() {
+                @Override
+                public void onSuccess(List<Map<String, Object>> data) {
+
+                    view.showData(data);
+                }
+
+                @Override
+                public void onFailure(String msg) {
+
+                }
+
+                @Override
+                public void onError() {
+
+                }
 
                 @Override
                 public void onComplete() {

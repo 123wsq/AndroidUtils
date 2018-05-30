@@ -34,22 +34,8 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(CityAdapter.ViewHolder holder, int position) {
 
-        holder.tv_city_name.setText(mData.get(position).getCity_name());
+        holder.tv_city_name.setText(mData.get(position).getName());
 
-        if (position == 0){
-            String curStart = mData.get(position).getCity_logogram().substring(0, 1);
-            holder.tv_index.setVisibility(View.VISIBLE);
-            holder.tv_index.setText(curStart.toUpperCase());
-        }else{
-            String upStart = mData.get(position-1).getCity_logogram().substring(0, 1);
-            String curStart = mData.get(position).getCity_logogram().substring(0, 1);
-            if (!upStart.equals(curStart)){
-                holder.tv_index.setVisibility(View.VISIBLE);
-                holder.tv_index.setText(curStart.toUpperCase());
-            }else{
-                holder.tv_index.setVisibility(View.GONE);
-            }
-        }
     }
 
     @Override

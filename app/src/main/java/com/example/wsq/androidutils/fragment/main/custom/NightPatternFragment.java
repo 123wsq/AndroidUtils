@@ -1,5 +1,7 @@
 package com.example.wsq.androidutils.fragment.main.custom;
 
+import android.content.res.Configuration;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,9 +12,19 @@ import com.example.wsq.androidutils.mvp.presenter.BasePresenter;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 夜间模式
+ */
 public class NightPatternFragment extends BaseFragment{
+
+    public static final String TAG = NightPatternFragment.class.getName();
+
+
     @BindView(R.id.tv_title)
     TextView tv_title;
+
+
+    private boolean enableNightMode = false;
 
 
     @Override
@@ -22,7 +34,7 @@ public class NightPatternFragment extends BaseFragment{
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.layout_fragment_night;
     }
 
     @Override
@@ -38,11 +50,14 @@ public class NightPatternFragment extends BaseFragment{
                 mFunctionsManage.invokeFunction(INTERFACE_BACK);
                 break;
             case R.id.tv_light:
-
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                getActivity().recreate();
                 break;
             case R.id.tv_night:
-
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                getActivity().recreate();
                 break;
         }
     }
+
 }

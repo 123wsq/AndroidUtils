@@ -4,6 +4,7 @@ import com.example.wsq.androidutils.mvp.callback.Callback;
 import com.wsq.library.bean.CityInfoBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/3/9 0009.
@@ -36,4 +37,6 @@ public interface DefaultModelInter {
     void showAppManagerValidate(Callback<List<String>> callback);
 
     void onShowIndexBar(Callback<List<CityInfoBean>> callback);
+
+    void onWaterFallData(Callback<List<Map<String, Object>>> callback);
 }

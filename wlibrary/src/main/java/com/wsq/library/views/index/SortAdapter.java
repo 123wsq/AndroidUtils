@@ -49,12 +49,12 @@ public class SortAdapter extends RecyclerView.Adapter<SortAdapter.ViewHolder> {
 
         }
 
-        holder.tvName.setText(this.mData.get(position).getCity_name());
+        holder.tvName.setText(this.mData.get(position).getName());
 
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, mData.get(position).getCity_name(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mData.get(position).getName(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,7 +102,7 @@ public class SortAdapter extends RecyclerView.Adapter<SortAdapter.ViewHolder> {
      * 根据ListView的当前位置获取分类的首字母的char ascii值
      */
     public int getSectionForPosition(int position) {
-        return mData.get(position).getCity_logogram().charAt(0);
+        return mData.get(position).getName().charAt(0);
     }
 
     /**
@@ -110,7 +110,7 @@ public class SortAdapter extends RecyclerView.Adapter<SortAdapter.ViewHolder> {
      */
     public int getPositionForSection(int section) {
         for (int i = 0; i < getItemCount(); i++) {
-            String sortStr = mData.get(i).getCity_logogram();
+            String sortStr = mData.get(i).getName();
             char firstChar = sortStr.toUpperCase().charAt(0);
             if (firstChar == section) {
                 return i;

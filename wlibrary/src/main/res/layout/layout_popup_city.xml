@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/shape_popup_gray"
+        android:padding="@dimen/default_padding_3"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height_3"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tv_popup_title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/default_height_3"
+                android:gravity="center"
+                android:text="山东省-青岛市-市北区"
+                />
+            <TextView
+                android:id="@+id/tv_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="确定"
+                android:textSize="@dimen/default_text_size_3"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/default_margin_2"
+                android:layout_marginLeft="@dimen/default_margin_3"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/default_margin_3"
+            android:layout_marginRight="@dimen/default_margin_3"
+            >
+
+                <com.contrarywind.view.WheelView
+                    android:id="@+id/wv_province"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <com.contrarywind.view.WheelView
+                    android:id="@+id/wv_city"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/default_margin_3"
+                    android:layout_marginRight="@dimen/default_margin_3"
+                    />
+
+                <com.contrarywind.view.WheelView
+                    android:id="@+id/wv_county"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+
+                    />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_height_3"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_popup_gray"
+        android:layout_marginTop="@dimen/default_radius_4"
+        android:text="取消"
+        android:textSize="@dimen/default_text_size_2"
+        android:textStyle="bold"
+        android:textColor="@color/cancel_popup_color"
+        android:gravity="center"
+        />
+
+</LinearLayout>

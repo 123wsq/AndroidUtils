@@ -29,10 +29,12 @@ import com.example.wsq.androidutils.fragment.main.custom.EditTextFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ImageFragment;
 import com.example.wsq.androidutils.fragment.main.custom.IndexFragment;
 import com.example.wsq.androidutils.fragment.main.custom.MediaFragment;
+import com.example.wsq.androidutils.fragment.main.custom.NightPatternFragment;
 import com.example.wsq.androidutils.fragment.main.custom.PopupWindowFragment;
 import com.example.wsq.androidutils.fragment.main.custom.ReflectFragment;
 import com.example.wsq.androidutils.fragment.main.custom.RefreshFragment;
 import com.example.wsq.androidutils.fragment.main.custom.UtilsValidateFragment;
+import com.example.wsq.androidutils.fragment.main.custom.WaterFallFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterFragment;
 import com.example.wsq.androidutils.fragment.main.custom.WaterWaveFragment;
 import com.example.wsq.androidutils.fragment.main.tab.OneTabFragment;
@@ -136,7 +138,7 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
             public void function(Integer data) {
                 switch (data){
                     case 0:
-
+                        onEnter(new WaterFallFragment(), WaterFallFragment.TAG, true);
                         break;
                     case 1://水印页面监听
                         onEnter(new WaterFragment(), WaterFragment.TAG, true);
@@ -156,6 +158,9 @@ public class MainActivity extends BaseActivity<DefaultView, DefaultPresenter<Def
                         break;
                     case 6:
                         onEnter(new WaterWaveFragment(), WaterWaveFragment.TAG, true);
+                        break;
+                    case 7:
+                        onEnter(new NightPatternFragment(), NightPatternFragment.TAG, true);
                         break;
                     default:
                         ToastUtils.onToast("努力完善中...");

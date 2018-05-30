@@ -56,8 +56,8 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
                 if (position == 0) {//等于0的时候绘制title
                     drawTitle(c, left, right, child, params, position);
                 } else {
-                    if (null != mData.get(position).getCity_logogram() && !mData.get(position)
-                            .getCity_logogram().equals(mData.get(position - 1).getCity_logogram())) {
+                    if (null != mData.get(position).getName() && !mData.get(position)
+                            .getName().equals(mData.get(position - 1).getName())) {
                         //字母不为空，并且不等于前一个，也要title
                         drawTitle(c, left, right, child, params, position);
                     }
@@ -81,8 +81,8 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
         c.drawRect(left, child.getTop() - params.topMargin - mTitleHeight, right, child.getTop() - params.topMargin, mPaint);
         mPaint.setColor(TITLE_TEXT_COLOR);
 
-        mPaint.getTextBounds(mData.get(position).getCity_logogram(), 0, mData.get(position).getCity_logogram().length(), mBounds);
-        c.drawText(mData.get(position).getCity_logogram(),
+        mPaint.getTextBounds(mData.get(position).getName(), 0, mData.get(position).getName().length(), mBounds);
+        c.drawText(mData.get(position).getName(),
                 child.getPaddingLeft(), 
                 child.getTop() - params.topMargin - (mTitleHeight / 2 - mBounds.height() / 2), mPaint);
     }
@@ -97,13 +97,13 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
     public void onDrawOver(Canvas c, final RecyclerView parent, RecyclerView.State state) {
         int position = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
         if (position == -1) return;//在搜索到没有的索引的时候position可能等于-1，所以在这里判断一下
-        String tag = mData.get(position).getCity_logogram();
+        String tag = mData.get(position).getName();
         View child = parent.findViewHolderForLayoutPosition(position).itemView;
         //Canvas是否位移过的标志
         boolean flag = false;
         if ((position + 1) < mData.size()) {
             //当前第一个可见的Item的字母索引，不等于其后一个item的字母索引，说明悬浮的View要切换了
-            if (null != tag && !tag.equals(mData.get(position + 1).getCity_logogram())) {
+            if (null != tag && !tag.equals(mData.get(position + 1).getName())) {
                 //当第一个可见的item在屏幕中剩下的高度小于title的高度时，开始悬浮Title的动画
                 if (child.getHeight() + child.getTop() < mTitleHeight) {
                     c.save();
@@ -147,8 +147,8 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
             if (position == 0) {
                 outRect.set(0, mTitleHeight, 0, 0);
             } else {
-                if (null != mData.get(position).getCity_logogram() &&
-                        !mData.get(position).getCity_logogram().equals(mData.get(position - 1).getCity_logogram())) {
+                if (null != mData.get(position).getName() &&
+                        !mData.get(position).getName().equals(mData.get(position - 1).getName())) {
                     //字母不为空，并且不等于前一个，绘制title
                     outRect.set(0, mTitleHeight, 0, 0);
                 } else {
