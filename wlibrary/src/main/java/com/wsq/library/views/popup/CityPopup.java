@@ -179,7 +179,7 @@ public class CityPopup extends PopupWindow{
             @Override
             public void onClick(View v) {
                 if (mCallBack!= null)
-                mCallBack.onCallBack(curProvince.getName(), curCity.getName(), curCounty.getName());
+                mCallBack.onCallBack(curProvince, curCity, curCounty);
                 dismiss();
             }
         });
