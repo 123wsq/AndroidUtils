@@ -307,14 +307,17 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
             ToastUtils.onToast("请选择省份");
             return;
         }
-        if (curCity == null){
-            ToastUtils.onToast("请选择城市");
-            return;
-        }
-        if (curCounty == null){
-            ToastUtils.onToast("请选择区县");
-            return;
-        }
+
+
+//        if (curCity == null){
+//            ToastUtils.onToast("请选择城市");
+//            return;
+//        }
+//
+//        if (curCounty == null){
+//            ToastUtils.onToast("请选择区县");
+//            return;
+//        }
         if (mCallBack != null){
             mCallBack.onCallBack(curProvince, curCity, curCounty);
         }
