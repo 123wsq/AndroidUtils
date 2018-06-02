@@ -155,9 +155,7 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
         tv_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mCallBack!= null)
-                mCallBack.onCallBack(curProvince, curCity, curCounty);
-                dismiss();
+                onCallBack();
             }
         });
 
@@ -176,16 +174,17 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
             switch (curType){
                 case 0:
                     onGetCityData(mListProvince.get(position).getId());
+                    curProvince = mListProvince.get(position);
                     rb_city.setChecked(true);
                     break;
                 case 1:
                     onGetCountyData(mListCity.get(position).getId());
+                    curCity = mListCity.get(position);
                     rb_county.setChecked(true);
                     break;
                 case 2:
-                    if (mCallBack!= null)
-                        mCallBack.onCallBack(curProvince, curCity, curCounty);
-                    dismiss();
+                        curCounty = mListCounty.get(position);
+                       onCallBack();
                     break;
             }
         }
@@ -300,5 +299,25 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
             }
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void onCallBack(){
+
+        if (curProvince == null){
+            ToastUtils.onToast("请选择省份");
+            return;
+        }
+        if (curCity == null){
+            ToastUtils.onToast("请选择城市");
+            return;
+        }
+        if (curCounty == null){
+            ToastUtils.onToast("请选择区县");
+            return;
+        }
+        if (mCallBack != null){
+            mCallBack.onCallBack(curProvince, curCity, curCounty);
+        }
+        dismiss();
     }
 }
