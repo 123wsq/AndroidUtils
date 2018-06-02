@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/default_height_3"
     android:orientation="vertical"
     android:paddingLeft="15dp">
 
@@ -11,5 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        tools:text="" />
+        android:text="1"
+        android:layout_marginLeft="@dimen/default_margin_3"
+        android:textSize="15sp"
+        android:textColor="#060606"
+        />
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.wsq.androidutils.fragment.main.custom;
 
-import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,17 +15,15 @@ import com.example.wsq.androidutils.base.BaseFragment;
 import com.example.wsq.androidutils.mvp.presenter.CityPresenter;
 import com.example.wsq.androidutils.mvp.view.CityView;
 import com.wsq.library.bean.CityInfoBean;
-import com.wsq.library.dao.CityDao;
 import com.wsq.library.tools.RecyclerViewDivider;
-import com.wsq.library.tools.ToastUtils;
 import com.wsq.library.utils.DensityUtil;
 import com.wsq.library.views.listener.OnCityResultCallBack;
 import com.wsq.library.views.popup.CityPopup;
+import com.wsq.library.views.popup.CityWheelPopup;
 import com.wsq.library.views.view.IndexView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
