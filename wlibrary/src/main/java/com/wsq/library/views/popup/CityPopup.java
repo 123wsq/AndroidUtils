@@ -176,14 +176,17 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
                     onGetCityData(mListProvince.get(position).getId());
                     curProvince = mListProvince.get(position);
                     rb_city.setChecked(true);
+                    rb_province.setText(curProvince.getName());
                     break;
                 case 1:
                     onGetCountyData(mListCity.get(position).getId());
                     curCity = mListCity.get(position);
                     rb_county.setChecked(true);
+                    rb_city.setText(curCity.getName());
                     break;
                 case 2:
                         curCounty = mListCounty.get(position);
+                        rb_county.setText(curCounty.getName());
                        onCallBack();
                     break;
             }
