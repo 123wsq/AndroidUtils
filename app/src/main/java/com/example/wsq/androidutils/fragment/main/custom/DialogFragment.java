@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.wsq.library.tools.ToastUtils;
 import com.wsq.library.utils.DensityUtil;
 import com.wsq.library.views.adapter.DefaultAdapter;
 import com.wsq.library.views.alertdialog.CustomDefaultDialog;
+import com.wsq.library.views.alertdialog.CustomViewDialog;
 import com.wsq.library.views.alertdialog.OnDialogClickListener;
 
 import java.util.ArrayList;
@@ -173,6 +175,15 @@ public class DialogFragment extends BaseFragment<DefaultView, DefaultPresenter<D
                                     dialogInterface.dismiss();
                                 }
                             });
+                    break;
+                case 8:
+                    CustomViewDialog.Builder builder = new CustomViewDialog.Builder(getActivity());
+                    View v = LayoutInflater.from(getActivity()).inflate(R.layout.layout_custom_dialog_view, null, false);
+                    builder.setView(v);
+                    builder.setWidth(0.9f);
+                    builder.setHeight(0.6f);
+                    builder.setBack(false);
+                    builder.create().show();
                     break;
                 default:
                     onShowDialog();

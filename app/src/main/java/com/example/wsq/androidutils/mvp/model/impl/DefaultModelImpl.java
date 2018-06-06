@@ -71,6 +71,7 @@ public class DefaultModelImpl implements DefaultModelInter {
         list.add("内容颜色");
         list.add("按钮颜色");
         list.add("按钮背景色");
+        list.add("自定义view");
         callback.onSuccess(list);
         callback.onComplete();
     }
