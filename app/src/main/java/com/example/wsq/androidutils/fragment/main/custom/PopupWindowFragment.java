@@ -70,6 +70,7 @@ public class PopupWindowFragment extends BaseFragment{
                 popup.dismiss();
             }
         });
+        popup.onTitle("设置");
 
         popup.showAtLocation(ll_layout, Gravity.BOTTOM|Gravity.CENTER, 0, 0);
     }

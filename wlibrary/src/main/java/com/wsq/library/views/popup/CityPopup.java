@@ -247,6 +247,7 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
             mCurList.clear();
             mCurList.addAll(mListCity);
             mAdapter.notifyDataSetChanged();
+            rv_RecyclerView.scrollToPosition(0);
         }
 
     }
@@ -271,6 +272,7 @@ public class CityPopup extends PopupWindow implements RadioGroup.OnCheckedChange
             mCurList.clear();
             mCurList.addAll(mListCounty);
             mAdapter.notifyDataSetChanged();
+            rv_RecyclerView.scrollToPosition(0);
         }
     }
 

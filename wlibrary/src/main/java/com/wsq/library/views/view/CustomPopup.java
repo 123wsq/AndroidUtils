@@ -1,5 +1,6 @@
 package com.wsq.library.views.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -25,11 +26,13 @@ public class CustomPopup extends PopupWindow{
 
     private Activity mContext;
     private View popupView;
+    TextView tv_title;
     private List<String> mData;
     private String textColor = "#000000";
     private View.OnClickListener onClickListener;
     private PopupItemListener listener;
 
+    @SuppressLint("WrongConstant")
     public CustomPopup(Activity context, List<String> list, View.OnClickListener clickListener, final PopupItemListener listener)
     {
         this.mContext = context;
@@ -37,8 +40,10 @@ public class CustomPopup extends PopupWindow{
         this.onClickListener = clickListener;
         this.listener = listener;
         setSoftInputMode(16);
-        this.popupView = LayoutInflater.from(context).inflate(R.layout.layout_default_popup, null);
+        this.popupView = LayoutInflater.from(mContext).inflate(R.layout.layout_default_popup, null);
         TextView tv_cancel = (TextView)this.popupView.findViewById(R.id.tv_cancel);
+
+        tv_title = (TextView)this.popupView.findViewById(R.id.tv_title);
 
         tv_cancel.setOnClickListener(this.onClickListener);
         ListView listview = (ListView)this.popupView.findViewById(R.id.listview);
@@ -66,10 +71,10 @@ public class CustomPopup extends PopupWindow{
         int height = 0;
         if (null != this.mData)
         {
-            if (h / 2 <= DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90 + 30)) {
+            if (h / 2 <= DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90)) {
                 height = h / 2;
             } else {
-                height = DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90 + 30);
+                height = DensityUtil.dp2px(this.mContext, this.mData.size() * 50 + 90);
             }
         }
         else {
@@ -97,11 +102,16 @@ public class CustomPopup extends PopupWindow{
         });
     }
 
+    public void onTitle(String title){
+        tv_title.setText(title);
+    }
     public void showAtLocation(View parent, int gravity, int x, int y)
     {
         super.showAtLocation(parent, gravity, x, y);
         backgroundAlpha(0.5F);
     }
+
+
 
     public void dismiss()
     {

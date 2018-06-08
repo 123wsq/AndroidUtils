@@ -31,12 +31,20 @@
 
             />
     </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#33555555"
+            android:layout_marginTop="@dimen/default_margin_4"
+            ></View>
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_white"
         android:scrollbars="none"
+        android:dividerHeight="0.5dp"
+        android:divider="#33555555"
         />
 
     </LinearLayout>
@@ -49,8 +57,8 @@
         android:layout_marginTop="@dimen/default_radius_4"
         android:text="取消"
         android:textSize="@dimen/default_text_size_2"
-        android:textStyle="bold"
         android:textColor="@color/cancel_popup_color"
         android:gravity="center"
+        android:layout_marginBottom="@dimen/default_margin_3"
         />
 </RelativeLayout>

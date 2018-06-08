@@ -2,7 +2,10 @@ package com.example.wsq.androidutils.fragment.main.custom;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wsq.androidutils.R;
@@ -12,6 +15,7 @@ import com.example.wsq.androidutils.mvp.presenter.DefaultPresenter;
 import com.example.wsq.androidutils.mvp.view.DefaultView;
 import com.example.wsq.androidutils.mvp.view.WaterFallView;
 import com.orhanobut.logger.Logger;
+import com.wsq.library.views.view.CustomPopup;
 import com.wsq.library.views.view.SpacesItemDecoration;
 
 import java.util.ArrayList;
@@ -29,9 +33,12 @@ public class WaterFallFragment extends BaseFragment<WaterFallView, DefaultPresen
     TextView tv_title;
     @BindView(R.id.rv_RecyclerView)
     RecyclerView rv_RecyclerView;
+@BindView(R.id.ll_layout)
+    LinearLayout ll_layout;
 
     private WaterFallAdapter mAdapter;
     private List<Map<String, Object>> mData;
+
 
 
     @Override
@@ -56,6 +63,7 @@ public class WaterFallFragment extends BaseFragment<WaterFallView, DefaultPresen
 
         mAdapter = new WaterFallAdapter(getActivity(), mData);
         rv_RecyclerView.setAdapter(mAdapter);
+
 
         ipresenter.onGetWaterFallData();
 
