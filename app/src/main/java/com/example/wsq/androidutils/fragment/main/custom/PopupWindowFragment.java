@@ -71,7 +71,7 @@ public class PopupWindowFragment extends BaseFragment{
             }
         });
         popup.onTitle("设置");
-
+        popup.onSetHeight(list.size()*50+75);
         popup.showAtLocation(ll_layout, Gravity.BOTTOM|Gravity.CENTER, 0, 0);
     }
 

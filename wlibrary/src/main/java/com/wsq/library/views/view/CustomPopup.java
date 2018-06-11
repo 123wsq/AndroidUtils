@@ -105,6 +105,10 @@ public class CustomPopup extends PopupWindow{
     public void onTitle(String title){
         tv_title.setText(title);
     }
+
+    public void onSetHeight(int height){
+        setHeight(DensityUtil.dp2px(mContext, height));
+    }
     public void showAtLocation(View parent, int gravity, int x, int y)
     {
         super.showAtLocation(parent, gravity, x, y);
